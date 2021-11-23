@@ -1,0 +1,106 @@
+" 保持ide中输入法为英文
+set keep-english-in-normal-and-restore-in-insert
+" 相对行号
+set nu
+set rnu
+" clipboard
+set clipboard=unnamed
+" 设置leader键
+let mapleader = ";"
+" 设置搜索高亮
+set hlsearch
+" 搜索实时预览
+set incsearch
+set scrolloff=5
+" 查找时忽略大小写
+set ignorecase
+set smartcase
+" 显示当前模式
+set showmode
+set history=10000
+" 格式化代码
+nnoremap <Leader>f :<C-u>action ReformatCode<CR>
+" 去除无效引用
+nnoremap <Leader>i :<C-u>action OptimizeImports<CR>
+" 在文件中查找
+nnoremap <Leader>g :<C-u>action FindInPath<CR>
+vnoremap <Leader>g :<C-u>action FindInPath<CR>
+" 重名命变量
+nnoremap <Leader>r :<C-u>action RenameElement<CR>
+" 最近打开的项目
+nnoremap <Leader>o :<C-u>action RecentProjectListGroup<CR>
+" debug 配置
+nnoremap <Leader>d :<C-u>action ChooseDebugConfiguration<CR>
+" 关闭除当前页面的其他页面
+nnoremap <Leader>w :<C-u>action CloseAllEditorsButActive<CR>
+" 竖直分割屏幕
+nnoremap <Leader>\ <C-w>v
+" 水平分割屏幕
+nnoremap <Leader>- <C-w>s
+" 新建文件
+nnoremap <Leader>n :action NewFile<CR>
+" 查找 action
+nnoremap ga :<C-u>action GotoAction<CR>
+" 查找class
+nnoremap gc :<C-u>action GotoClass<CR>
+" 跳转到定义文件
+nnoremap gd :<C-u>action GotoDeclaration<CR>
+" 跳转到实现文件
+nnoremap gi :<C-u>action GotoImplementation<CR>
+" 查找文件
+nnoremap gf :<C-u>action GotoFile<CR>
+" 查找symbol
+nnoremap gm :<C-u>action GotoSymbol<CR>
+" 跳转到上一个文件
+nnoremap grl :<C-u>action JumpToLastChange<CR>
+" 跳转到使用处
+nnoremap gu :<C-u>action ShowUsages<CR>
+" 查找文件
+nnoremap gp :<C-u>action FindInPath<CR>
+" 最近的文件
+nnoremap gr :<C-u>action RecentFiles<CR>
+" 选择全部
+nnoremap <Leader>a :action $SelectAll<CR>
+" 格式化代码
+nnoremap == :<C-u>action ReformatCode<CR>
+vnoremap == :<C-u>action ReformatCode<CR>
+nnoremap q :<C-u>action ShowIntentionActions<CR>
+" 注释代码
+nnoremap cc :<C-u>action CommentByLineComment<CR>
+vnoremap cc :<C-u>action CommentByLineComment<CR>
+" 在 标签页 间切换
+nnoremap gh gT
+nnoremap gl gt
+" 打断点
+nnoremap tb :action ToggleLineBreakpoint<cr>
+" bookmark
+nnoremap tm :action ToggleBookmark<cr>
+" 激活项目目录
+nnoremap tp :action ActivateProjectToolWindow<CR>
+" 关闭当前页面
+nnoremap <space>q :action CloseContent<cr>
+" 重新打开刚才关闭的页面
+nnoremap <space>w :action ReopenClosedTab<cr>
+" 搜索
+nnoremap <space>e :action SearchEverywhere<cr>
+" 显示文件结构
+nnoremap <space>t :action FileStructurePopup<cr>
+"  高亮显示当前词
+nnoremap <space>k :action HighlightUsagesInFile<cr>
+"  运行
+nnoremap \r :action RunClass<cr>
+nnoremap \R :action Run<cr>
+" debug
+nnoremap \d :action DebugClass<cr>
+nnoremap \D :action Debug<cr>
+" 上一个方法
+nnoremap [[ :action MethodUp<cr>
+" 下一个方法
+nnoremap ]] :action MethodDown<cr>
+" 替换
+noremap ' <ESC>:action Replace<cr>
+noremap g' <ESC>:action ReplaceInPath<cr>
+" acejump, f 激活搜索
+nnoremap f :<C-u>action AceAction<CR>
+nnoremap F :<C-u>action AceTargetAction<CR>
+
