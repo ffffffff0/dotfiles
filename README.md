@@ -1,6 +1,14 @@
-# dotfile
+## dotfiles
+
+使用方法:
+
+`make init`
+
 - vim
+vim 配置
 
 - tmux
+tmux 配置
 
-- ideavim
+- ideavimrc
+IDEA vim 插件配置
