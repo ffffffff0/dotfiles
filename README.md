@@ -1,2 +1,6 @@
 # dotfile
-dotfile
+- vim
+
+- tmux
+
+- ideavim
