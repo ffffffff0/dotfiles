@@ -107,7 +107,7 @@ set noswapfile               " 不生成交换文件
 set list                     " 显示特殊字符，其中Tab使用高亮~代替，尾部空白使用高亮点号代替
 set listchars=tab:\~\ ,trail:.
 set expandtab                " 将 Tab 自动转化成空格 [需要输入真正的 Tab 符时，使用 Ctrl+V + Tab]
-"set showmatch               " 显示括号配对情况
+set showmatch               " 显示括号配对情况
 set splitbelow               " :sp  切分窗口显示在下侧
 set splitright               " :vsp 切分窗口显示在右侧
 set shell=bash               " Terminal 默认使用 Bash
@@ -132,6 +132,11 @@ nnoremap <Leader>j <C-W><C-J>
 nmap <Leader>s :Sex<CR>
 " 竖直分割
 nmap <Leader>v :Vex<CR>
+" 括号匹配
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
 
 " 使用 vimdiff 时，长行自动换行
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
