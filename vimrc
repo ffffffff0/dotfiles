@@ -1,3 +1,5 @@
+" 定义快捷键前缀;
+let mapleader=";"
 " 更改主题
 set background=dark
 " colorscheme monokai
@@ -109,6 +111,13 @@ set expandtab                " 将 Tab 自动转化成空格 [需要输入真正
 set splitbelow               " :sp  切分窗口显示在下侧
 set splitright               " :vsp 切分窗口显示在右侧
 set shell=bash               " Terminal 默认使用 Bash
+" 向下翻半屏
+nmap <Leader>u <C-U>
+" 向上翻半屏
+nmap <Leader>d <C-D>
+" 快速移动到行首，行尾
+map <Leader>1 ^
+map <Leader>2 $
 
 " 使用 vimdiff 时，长行自动换行
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
@@ -312,7 +321,9 @@ function AddDockerComposeDict()
     endif
     set complete+=k
 endfunction
-" DTree            树形文件浏览器
+" NERDTree            树形文件浏览器
+" 查看工程文件
+nnoremap <silent> <Leader>n :NERDTreeToggle <CR>
 let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
 let g:NERDTreeGitStatusShowIgnored  = 1        " 显示被忽略图标 [NERDTree-Git-Plugin]
 let g:NERDTreeGitStatusIndicatorMapCustom = {
