@@ -1,5 +1,3 @@
-" 定义快捷键前缀;
-let mapleader=";"
 " 更改主题
 set background=dark
 " colorscheme monokai
@@ -341,8 +339,6 @@ function AddDockerComposeDict()
     set complete+=k
 endfunction
 " NERDTree            树形文件浏览器
-" 查看工程文件
-nnoremap <silent> <Leader>n  :NERDTreeToggle <CR>
 " NERDTree 子窗口位置
 let NERDTreeWinPos="left"
 let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
@@ -375,21 +371,6 @@ vmap <c-]> g<c-]>
 nmap <c-t> :pop<cr>
 " Ctrl + U            简化全能补全按键
 imap <c-u> <c-x><c-o>
-" Ctrl + H            光标移当前行行首[插入模式]、切换左窗口[Normal 模式]
-imap <c-h> <esc>I
-map <c-h> <c-w><c-h>
-
-" Ctrl + J            光标移下一行行首[插入模式]、切换下窗口[Normal 模式]
-imap <c-j> <esc><down>I
-map <c-j> <c-w><c-j>
-
-" Ctrl + K            光标移上一行行尾[插入模式]、切换上窗口[Normal 模式]
-imap <c-k> <esc><up>A
-map <c-k> <c-w><c-k>
-
-" Ctrl + L            光标移当前行行尾[插入模式]、切换右窗口[Normal 模式]
-imap <c-l> <esc>A
-map <c-l> <c-w><c-l>
 " \nt                 打开文件树窗口，在左侧栏显示 [NERDTree 插件]
 nmap <leader>nt :NERDTree<cr>
 " \rb                 一键去除全部尾部空白
