@@ -118,6 +118,20 @@ nmap <Leader>d <C-D>
 " 快速移动到行首，行尾
 map <Leader>1 ^
 map <Leader>2 $
+" 设置快捷键遍历各个分割窗口
+nnoremap <Leader>gg <C-W><C-W>
+" 向左
+nnoremap <leader>h <C-W><C-H>
+" 向右
+nnoremap <leader>l <C-W><C-L>
+" 向上
+nnoremap <Leader>k <C-W><C-K>
+" 向下
+nnoremap <Leader>j <C-W><C-J>
+" 水平分割
+nmap <Leader>s :Sex<CR>
+" 竖直分割
+nmap <Leader>v :Vex<CR>
 
 " 使用 vimdiff 时，长行自动换行
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
@@ -323,7 +337,9 @@ function AddDockerComposeDict()
 endfunction
 " NERDTree            树形文件浏览器
 " 查看工程文件
-nnoremap <silent> <Leader>n :NERDTreeToggle <CR>
+nnoremap <silent> <Leader>n  :NERDTreeToggle <CR>
+" NERDTree 子窗口位置
+let NERDTreeWinPos="left"
 let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
 let g:NERDTreeGitStatusShowIgnored  = 1        " 显示被忽略图标 [NERDTree-Git-Plugin]
 let g:NERDTreeGitStatusIndicatorMapCustom = {
