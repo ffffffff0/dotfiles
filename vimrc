@@ -8,6 +8,10 @@
 " ;rt         一键替换全部 Tab 为空格
 " ;s          水平分割
 " ;v          竖直分割
+" ;cc         加注释
+" ;cu         取消注释
+" ;c<space>   加上注释/取消注释，智能判断
+" ;cy         先复制，再注释
 " 更改主题
 " set background=dark
 colorscheme monokai
