@@ -6,6 +6,8 @@
 " ;nt         打开文件目录树
 " ;rb         去除一行尾部的空白
 " ;rt         一键替换全部 Tab 为空格
+" ;s          水平分割
+" ;v          竖直分割
 " 更改主题
 " set background=dark
 colorscheme monokai
@@ -23,19 +25,14 @@ else
         let g:isMAC = 0
     endif
 endif
-
 " 加载pathogen 插件管理器
 execute pathogen#infect()
 execute pathogen#helptags()
-
 " 设置 ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
 let g:ctrlp_working_path_mode = 'ra'
-
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
-
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " 设置通用缩进策略
 set shiftwidth=4
@@ -48,30 +45,27 @@ let g:indentLine_enabled    = 0                " 默认关闭
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']  " 设置对齐线字符，每个层级都可以不一样
 let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
-
 " AirLine 彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
-" \c 复制至公共剪贴板         [仅选择模式]
-" \a 复制所有至公共剪贴板     [Normal 模式可用]
-" \v 从公共剪贴板粘贴         [全模式可用]
+" ;c 复制至公共剪贴板         [仅选择模式]
+" ;a 复制所有至公共剪贴板     [Normal 模式可用]
+" ;v 从公共剪贴板粘贴         [全模式可用]
 " 设置leader键
 let mapleader=";"
-" \c 复制至公共剪贴板
+" ;c 复制至公共剪贴板
 vmap <leader>c "+y
-" \a 复制所有至公共剪贴板
+" ;a 复制所有至公共剪贴板
 nmap <leader>a <esc>ggVG"+y<esc>
-" \v 从公共剪贴板粘贴
+" ;v 从公共剪贴板粘贴
 imap <leader>v <esc>"+p
 nmap <leader>v "+p
 vmap <leader>v "+p
-
 set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
 set ruler                    " 右下角显示光标位置的状态行
-
 set relativenumber           " 开启相对行号
 set nu!                      " 显示行号
 set incsearch                " 开始实时搜索
@@ -120,24 +114,19 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
-
 " 使用 vimdiff 时，长行自动换行
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
-
 syntax enable                " 打开语法高亮
 syntax on                    " 开启文件类型侦测
 filetype indent on           " 针对不同的文件类型采用不同的缩进格式
 filetype plugin on           " 针对不同的文件类型加载对应的插件
 filetype plugin indent on    " 启用自动补全
-
-
 " 设置文件编码和文件格式
 set fenc=utf-8
 set encoding=utf-8
 set fileencodings=utf-8,gbk,cp936,latin-1
 set fileformat=unix
 set fileformats=unix,mac,dos
-
 " NERDTree            树形文件浏览器
 let NERDTreeWinPos="left"
 let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
@@ -169,17 +158,9 @@ nnoremap <leader>nt :NERDTree<CR>
 imap <leader>rb <esc>:let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
 nmap <leader>rb :let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
 vmap <leader>rb <esc>:let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
-
-" ;rm                 一键去除全部 ^M 字符
-imap <leader>rm <esc>:%s/<c-v><c-m>//g<cr>
-nmap <leader>rm :%s/<c-v><c-m>//g<cr>
-vmap <leader>rm <esc>:%s/<c-v><c-m>//g<cr>
-
 " ;rt                 一键替换全部 Tab 为空格
 nmap <leader>rt <esc>:retab<cr>
-
 " ;ra                 一键清理当前代码文件
 nmap <leader>ra <esc>\rt<esc>\rb<esc>gg=G<esc>gg<esc>
-
 " NERD_commenter      注释处理插件
 let NERDSpaceDelims = 1                        " 自动添加前置空格
