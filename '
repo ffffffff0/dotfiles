@@ -17,10 +17,28 @@ else
         let g:isMAC = 0
     endif
 endif
+" 判断是否处于GUI界面
+if has('gui_running'):
+    if g:isWIN
+        au GUIEnter * simalt ~x
+    endif
+
+    set guioptions+=c          " 使用字符提示框
+    set guioptions-=m          " 隐藏菜单栏
+    set guioptions-=T          " 隐藏工具栏
+    set guioptions-=L          " 隐藏左侧滚动条
+    set guioptions-=r          " 隐藏右侧滚动条
+    set guioptions-=b          " 隐藏底部滚动条
+    set showtabline=0          " 隐藏Tab栏
+    set cursorline             " 高亮突出当前行
+    " set cursorcolumn         " 高亮突出当前列
+endif
 
 " 加载pathogen 插件管理器
 execute pathogen#infect()
 execute pathogen#helptags()
+
+
 
 " 设置 ctrlp
 let g:ctrlp_map = '<c-p>'
