@@ -1,5 +1,11 @@
 " ----------- Leader 系按键 -------------
-" ----------- 跳转命令 ------------------
+" ;d          向下翻半屏
+" ;u          向上翻半屏
+" ;1          移动到行首
+" ;2          移动到行尾
+" ;nt         打开文件目录树
+" ;rb         去除一行尾部的空白
+" ;rt         一键替换全部 Tab 为空格
 " 更改主题
 " set background=dark
 colorscheme monokai
@@ -59,35 +65,6 @@ nmap <leader>a <esc>ggVG"+y<esc>
 imap <leader>v <esc>"+p
 nmap <leader>v "+p
 vmap <leader>v "+p
-" 根据后缀名指定文件类型
-au BufRead,BufNewFile *.h        set ft=c
-au BufRead,BufNewFile *.i        set ft=c
-au BufRead,BufNewFile *.m        set ft=objc
-au BufRead,BufNewFile *.di       set ft=d
-au BufRead,BufNewFile *.ss       set ft=scheme
-au BufRead,BufNewFile *.cl       set ft=lisp
-au BufRead,BufNewFile *.phpt     set ft=php
-au BufRead,BufNewFile *.inc      set ft=php
-au BufRead,BufNewFile *.cson     set ft=coffee
-au BufRead,BufNewFile *.sql      set ft=mysql
-au BufRead,BufNewFile *.tpl      set ft=smarty
-au BufRead,BufNewFile *.txt      set ft=txt
-au BufRead,BufNewFile *.log      set ft=conf
-au BufRead,BufNewFile hosts      set ft=conf
-au BufRead,BufNewFile *.conf     set ft=dosini
-au BufRead,BufNewFile http*.conf set ft=apache
-au BufRead,BufNewFile *.ini      set ft=dosini
-
-au BufRead,BufNewFile */nginx/*.conf        set ft=nginx
-au BufRead,BufNewFile */nginx/**/*.conf     set ft=nginx
-au BufRead,BufNewFile */openresty/*.conf    set ft=nginx
-au BufRead,BufNewFile */openresty/**/*.conf set ft=nginx
-
-au BufRead,BufNewFile *.yml.bak      set ft=yaml
-au BufRead,BufNewFile *.yml.default  set ft=yaml
-au BufRead,BufNewFile *.yml.example  set ft=yaml
-
-au BufRead,BufNewFile CMakeLists.txt set ft=cmake
 
 set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
@@ -161,191 +138,6 @@ set fileencodings=utf-8,gbk,cp936,latin-1
 set fileformat=unix
 set fileformats=unix,mac,dos
 
-" 针对部分语言添加字典补全
-au FileType c      call AddCDict()
-au FileType cpp    call AddCPPDict()
-au FileType rust   call AddRustDict()
-au FileType go     call AddGoDict()
-au FileType java   call AddJavaDict()
-au FileType lua    call AddLuaDict()
-au FileType perl   call AddPerlDict()
-au FileType php    call AddPHPDict()
-au FileType python call AddPythonDict()
-au FileType mysql  call AddMySQLDict()
-
-au FileType elixir,eelixir call AddElixirDict()
-au FileType ruby,eruby     call AddRubyDict()
-
-au FileType html,gohtmltmpl,eelixir,blade,volt,*.twig,htmldjango,jinja,eruby,jst call AddHTMLDict()
-au FileType smarty,mustache,handlebars,vue,jsx                                   call AddHTMLDict()
-au FileType css,scss,less                                                        call AddCSSDict()
-au FileType javascript,coffee,typescript,ls                                      call AddJavaScriptDict()
-
-au FileType slim,pug call AddHTMLDict()
-au FileType slim,pug call AddCSSDict()
-au FileType slim,pug call AddJavaScriptDict()
-
-au FileType Dockerfile     call AddDockerfileDict()
-au FileType docker-compose call AddDockerComposeDict()
-
-
-function AddCDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/c.txt
-    else
-        set dict+=~/.vim/dict/c.txt
-    endif
-    set complete+=k
-endfunction
-
-
-function AddCPPDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/c.txt
-        set dict+=$VIM/vimfiles/dict/cpp.txt
-    else
-        set dict+=~/.vim/dict/c.txt
-        set dict+=~/.vim/dict/cpp.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddRustDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/rust.txt
-    else
-        set dict+=~/.vim/dict/rust.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddGoDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/go.txt
-    else
-        set dict+=~/.vim/dict/go.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddJavaDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/java.txt
-    else
-        set dict+=~/.vim/dict/java.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddElixirDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/elixir.txt
-    else
-        set dict+=~/.vim/dict/elixir.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddLuaDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/lua.txt
-        set dict+=$VIM/vimfiles/dict/love2d.txt
-    else
-        set dict+=~/.vim/dict/lua.txt
-        set dict+=~/.vim/dict/love2d.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddPerlDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/perl.txt
-    else
-        set dict+=~/.vim/dict/perl.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddPHPDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/php.txt
-    else
-        set dict+=~/.vim/dict/php.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddPythonDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/python.txt
-    else
-        set dict+=~/.vim/dict/python.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddRubyDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/ruby.txt
-    else
-        set dict+=~/.vim/dict/ruby.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddMySQLDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/mysql.txt
-    else
-        set dict+=~/.vim/dict/mysql.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddCSSDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/css.txt
-    else
-        set dict+=~/.vim/dict/css.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddJavaScriptDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/javascript.txt
-    else
-        set dict+=~/.vim/dict/javascript.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddHTMLDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/html.txt
-    else
-        set dict+=~/.vim/dict/html.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddDockerfileDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/Dockerfile.txt
-    else
-        set dict+=~/.vim/dict/Dockerfile.txt
-    endif
-    set complete+=k
-endfunction
-
-function AddDockerComposeDict()
-    if g:isWIN
-        set dict+=$VIM/vimfiles/dict/docker-compose.txt
-    else
-        set dict+=~/.vim/dict/docker-compose.txt
-    endif
-    set complete+=k
-endfunction
 " NERDTree            树形文件浏览器
 let NERDTreeWinPos="left"
 let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
@@ -371,13 +163,6 @@ let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
 " 高亮当前行列
 set cursorline
-" Ctrl + ]            多选择跳转
-nmap <c-]> g<c-]>
-vmap <c-]> g<c-]>
-" Ctrl + T            跳回原位置
-nmap <c-t> :pop<cr>
-" Ctrl + U            简化全能补全按键
-imap <c-u> <c-x><c-o>
 " ;nt                 打开文件树窗口，在左侧栏显示 [NERDTree 插件]
 nnoremap <leader>nt :NERDTree<CR>
 " ;rb                 一键去除全部尾部空白
