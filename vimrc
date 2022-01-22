@@ -44,6 +44,18 @@
 " set background=dark
 colorscheme monokai
 set guifont=Monaco\ 11
+" 让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+" 进入插入模式下的光标形状: 闪烁的竖线
+let &t_SI.="\e[5 q"
+" " 进入替换模式下的光标形状: 闪烁的下划线
+let &t_SR.="\e[3 q"
+" " 从插入模式或替换模式下退出，进入普通模式后的光标形状: 闪烁的方块
+let &t_EI.="\e[1 q"
+" " 进入vim时，设置普通模式下的光标形状: 闪烁的方块
+autocmd VimEnter * silent !echo -ne "\e[1 q"
+" " 离开vim后，恢复shell模式下的光标形状: 闪烁的竖线
+autocmd VimLeave * silent !echo -ne "\e[5 q"
 " 判断操作系统类型
 if(has('win32') || has('win64'))
     let g:isWIN = 1
@@ -73,7 +85,7 @@ set tabstop=4
 au FileType scheme,racket,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
 au FileType scheme,racket,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
 " indentLine 显示对齐线
-let g:indentLine_enabled    = 0                " 默认关闭
+let g:indentLine_enabled    = 1                " 默认关闭
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']  " 设置对齐线字符，每个层级都可以不一样
 let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
@@ -93,12 +105,14 @@ nmap <leader>a <esc>ggVG"+y<esc>
 imap <leader>v <esc>"+p
 nmap <leader>v "+p
 vmap <leader>v "+p
+
 set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
 set ruler                    " 右下角显示光标位置的状态行
-autocmd InsertEnter * se cul " 浅色高亮当前行
+set cul                      " 浅色高亮当前行
+" set cuc                      " 浅色高亮当前列
 set relativenumber           " 开启相对行号
 set nu!                      " 显示行号
 set incsearch                " 开始实时搜索
@@ -161,7 +175,7 @@ set fileencodings=utf-8,gbk,cp936,latin-1
 set fileformat=unix
 set fileformats=unix,mac,dos
 " NERDTree            树形文件浏览器
-let NERDTreeWinPos="left"
+let NERDTreeWinPos="right"
 let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
 let g:NERDTreeGitStatusShowIgnored  = 1        " 显示被忽略图标 [NERDTree-Git-Plugin]
 let g:NERDTreeGitStatusIndicatorMapCustom = {
