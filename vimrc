@@ -46,6 +46,8 @@ colorscheme monokai
 set guifont=Monaco\ 11
 " 让配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
+" 设置leader键
+let mapleader=";"
 " 进入插入模式下的光标形状: 闪烁的竖线
 let &t_SI.="\e[5 q"
 " " 进入替换模式下的光标形状: 闪烁的下划线
@@ -72,31 +74,12 @@ endif
 " 加载pathogen 插件管理器
 execute pathogen#infect()
 execute pathogen#helptags()
-" 设置 ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " 设置通用缩进策略
 set shiftwidth=4
 set tabstop=4
 " 对部分语言设置单独的缩进 [两空格缩进]
 au FileType scheme,racket,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
 au FileType scheme,racket,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
-" indentLine 显示对齐线
-let g:indentLine_enabled    = 1                " 默认关闭
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']  " 设置对齐线字符，每个层级都可以不一样
-let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
-let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
-" AirLine 彩色状态栏
-let g:airline_theme           = 'badwolf'      " 设置主题
-let g:airline_powerline_fonts = 0              " 关闭自定义字体
-" ;c 复制至公共剪贴板         [仅选择模式]
-" ;a 复制所有至公共剪贴板     [Normal 模式可用]
-" ;v 从公共剪贴板粘贴         [全模式可用]
-" 设置leader键
-let mapleader=";"
 " ;c 复制至公共剪贴板
 vmap <leader>c "+y
 " ;a 复制所有至公共剪贴板
@@ -112,7 +95,7 @@ set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
 set ruler                    " 右下角显示光标位置的状态行
 set cul                      " 浅色高亮当前行
-" set cuc                      " 浅色高亮当前列
+set cuc                      " 浅色高亮当前列
 set relativenumber           " 开启相对行号
 set nu!                      " 显示行号
 set incsearch                " 开始实时搜索
@@ -197,8 +180,12 @@ let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
-" 高亮当前行列
-set cursorline
+" 设置 ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 " ;nt                 打开文件树窗口，在左侧栏显示 [NERDTree 插件]
 nnoremap <leader>nt :NERDTree<CR>
 " ;rb                 一键去除全部尾部空白
