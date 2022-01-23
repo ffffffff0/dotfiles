@@ -234,3 +234,4 @@ nmap <leader>rt <esc>:retab<cr>
 nmap <leader>ra <esc>\rt<esc>\rb<esc>gg=G<esc>gg<esc>
 " NERD_commenter      注释处理插件
 let NERDSpaceDelims = 1                        " 自动添加前置空格
+
