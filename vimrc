@@ -5,6 +5,7 @@
 " ;1                       移动到行首
 " ;2                       移动到行尾
 " ;nt                      打开文件目录树
+" ;il                      打开identLine
 " ;rb                      去除一行尾部的空白
 " ;rt                      一键替换全部 Tab 为空格
 " ;s                       水平分割
@@ -76,11 +77,7 @@
 " ds"                      删除外围的双引号定界符         [surround 插件]
 " ysiw"                    为单词增加双引号
 "
-" 主题设置
-" set background=dark
-colorscheme monokai
-set guifont=Monaco\ 11
-" 让配置变更立即生效
+" 让setting变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " 设置leader键
 let mapleader=";"
@@ -107,9 +104,26 @@ else
         let g:isMAC = 0
     endif
 endif
-" 加载pathogen 插件管理器
-execute pathogen#infect()
-execute pathogen#helptags()
+
+" 加载插件管理器
+call plug#begin()
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-surround'
+Plug 'Yggdroot/indentLine'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdcommenter'
+Plug 'liuchengxu/vista.vim'
+Plug 'google/vim-searchindex'
+Plug 'voldikss/vim-floaterm'
+call plug#end()
+
+" 主题设置
+colorscheme dracula
+set guifont=Monaco\ 11
+" 针对terminal背景灰色
+let g:dracula_colorterm = 0
 " 设置通用缩进策略
 set shiftwidth=4
 set tabstop=4
@@ -131,7 +145,7 @@ set ai!                      " 设置自动缩进
 set smartindent              " 智能自动缩进
 set ruler                    " 右下角显示光标位置的状态行
 set cul                      " 浅色高亮当前行
-set cuc                      " 浅色高亮当前列
+" set cuc                      " 浅色高亮当前列
 set relativenumber           " 开启相对行号
 set nu!                      " 显示行号
 set incsearch                " 开始实时搜索
@@ -142,15 +156,15 @@ set hidden                   " 允许在有未保存的修改时切换缓冲区
 set autochdir                " 设定文件浏览器目录为当前目录
 set foldmethod=indent        " 选择代码折叠类型
 set foldlevel=100            " 禁止自动折叠
-set laststatus=2             " 开始状态栏信息
-set cmdheight=2              " 命令行的高度，默认为1，这里设为2
+set laststatus=1             " 开始状态栏信息
+set cmdheight=1              " 命令行的高度，默认为1，这里设为2
 set autoread                 " 当文件在外部被修改时自动更新该文件
 set nobackup                 " 不生成备份文件
 set noswapfile               " 不生成交换文件
 set list                     " 显示特殊字符，其中Tab使用高亮~代替，尾部空白使用高亮点号代替
 set listchars=tab:\~\ ,trail:.
 set expandtab                " 将 Tab 自动转化成空格 [需要输入真正的 Tab 符时，使用 Ctrl+V + Tab]
-set showmatch               " 显示括号配对情况
+set showmatch                " 显示括号配对情况
 set splitbelow               " :sp  切分窗口显示在下侧
 set splitright               " :vsp 切分窗口显示在右侧
 set shell=bash               " Terminal 默认使用 Bash
@@ -193,37 +207,46 @@ set encoding=utf-8
 set fileencodings=utf-8,gbk,cp936,latin-1
 set fileformat=unix
 set fileformats=unix,mac,dos
-" NERDTree            树形文件浏览器
-let NERDTreeWinPos="right"
-let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
-let g:NERDTreeGitStatusShowIgnored  = 1        " 显示被忽略图标 [NERDTree-Git-Plugin]
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-            \ 'Modified'  : '✹',
-            \ 'Staged'    : '✚',
-            \ 'Untracked' : '✭',
-            \ 'Renamed'   : '➜',
-            \ 'Unmerged'  : '═',
-            \ 'Deleted'   : '✖',
-            \ 'Dirty'     : '✗',
-            \ 'Clean'     : '✔︎',
-            \ 'Unknown'   : '?'
-            \ }                                " 为 NERDTree-Git-Plugin 设定各个状态对应的符号
+
 " indentLine          显示对齐线
+map <leader>il :IndentLinesToggle<CR>
 let g:indentLine_enabled    = 1                " 默认关闭
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']  " 设置对齐线字符，每个层级都可以不一样
 let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
+
+" floaterm
+let g:floaterm_keymap_prev   = '<C-p>'
+let g:floaterm_keymap_new    = '<C-e>'
+let g:floaterm_keymap_toggle = '<C-t>'
+let g:floaterm_height = 1.0
+
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
-" 设置 ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-" ;nt                 打开文件树窗口，在左侧栏显示 [NERDTree 插件]
-nnoremap <leader>nt :NERDTree<CR>
+
+" Coc-exploer         文件树
+" <Enter>  进入文件夹
+" <Backspace>  上一个文件夹
+nnoremap <leader>ce :CocCommand explorer<CR>
+
+" Vista 实现函数侧边栏导航
+let g:vista_sidebar_position = "vertical topright"
+let g:vista_default_executive = 'coc'
+let g:vista_finder_alternative_executives = 'ctags'
+nnoremap  <leader>va :Vista<CR>
+nnoremap  <leader>cv :Vista!<CR>
+nnoremap  <leader>tv :Vista!!<CR>
+" 启用悬浮窗预览
+let g:vista_echo_cursor_strategy ='floating_win'
+" 侧边栏宽度.
+let g:vista_sidebar_width = 30
+" 设置为0，以禁用光标移动时的回显
+let g:vista_echo_cursor = 1
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+" 展示最近的函数
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+
 " ;rb                 一键去除全部尾部空白
 imap <leader>rb <esc>:let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
 nmap <leader>rb :let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
@@ -235,3 +258,15 @@ nmap <leader>ra <esc>\rt<esc>\rb<esc>gg=G<esc>gg<esc>
 " NERD_commenter      注释处理插件
 let NERDSpaceDelims = 1                        " 自动添加前置空格
 
+" CoC 配置
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
