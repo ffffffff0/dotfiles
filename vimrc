@@ -116,7 +116,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'liuchengxu/vista.vim'
 Plug 'google/vim-searchindex'
-Plug 'voldikss/vim-floaterm'
+" Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " 主题设置
@@ -216,10 +216,10 @@ let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 
 " floaterm
-let g:floaterm_keymap_prev   = '<C-p>'
-let g:floaterm_keymap_new    = '<C-e>'
-let g:floaterm_keymap_toggle = '<C-t>'
-let g:floaterm_height = 1.0
+"let g:floaterm_keymap_next   = '<leader>fh'
+"let g:floaterm_keymap_prev   = '<leader>fl'
+"let g:floaterm_keymap_new    = '<leader>fn'
+"let g:floaterm_keymap_toggle = '<leader>ft'
 
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
