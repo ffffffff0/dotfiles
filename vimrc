@@ -116,7 +116,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'liuchengxu/vista.vim'
 Plug 'google/vim-searchindex'
-" Plug 'voldikss/vim-floaterm'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " 主题设置
@@ -167,7 +167,7 @@ set expandtab                " 将 Tab 自动转化成空格 [需要输入真正
 set showmatch                " 显示括号配对情况
 set splitbelow               " :sp  切分窗口显示在下侧
 set splitright               " :vsp 切分窗口显示在右侧
-set shell=bash               " Terminal 默认使用 Bash
+set shell=zsh               " Terminal 默认使用 Bash
 " 向下翻半屏
 nmap <Leader>u <C-U>
 " 向上翻半屏
@@ -215,11 +215,14 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']  " 设置对齐线字符�
 let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 
-" floaterm
-"let g:floaterm_keymap_next   = '<leader>fh'
-"let g:floaterm_keymap_prev   = '<leader>fl'
-"let g:floaterm_keymap_new    = '<leader>fn'
-"let g:floaterm_keymap_toggle = '<leader>ft'
+" floaterm            浮动termianl
+let g:floaterm_wintype       = 'vsplit'
+let g:floaterm_keymap_next   = '<leader>fh'
+let g:floaterm_keymap_prev   = '<leader>fl'
+let g:floaterm_keymap_new    = '<leader>fn'
+let g:floaterm_keymap_toggle = '<leader>ft'
+let g:floaterm_keymap_kill   = '<leader>fk'
+let g:floaterm_height = 1.0
 
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
