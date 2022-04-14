@@ -1,5 +1,7 @@
 ## dotfiles
 
+确保vim版本>=8.1
+
 使用方法:
 
 `make init`
@@ -16,7 +18,7 @@ Install nodejs >= 12.12:
 
 Install coc extensions:
 
-```:CocInstall coc-json coc-tsserver coc-floaterm```
+```:CocInstall coc-json coc-tsserver coc-explorer coc-floaterm```
 
 configure language server in coc-settings.json opened by :CocConfig
 

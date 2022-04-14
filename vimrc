@@ -4,7 +4,7 @@
 " ;u                       向上翻半屏
 " ;1                       移动到行首
 " ;2                       移动到行尾
-" ;nt                      打开文件目录树
+" ;ce                      打开文件目录树
 " ;il                      打开identLine
 " ;rb                      去除一行尾部的空白
 " ;rt                      一键替换全部 Tab 为空格
@@ -77,6 +77,8 @@
 " ds"                      删除外围的双引号定界符         [surround 插件]
 " ysiw"                    为单词增加双引号
 "
+" 省略警告
+let g:coc_disable_startup_warning = 1
 " 让setting变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 " 设置leader键
@@ -128,8 +130,8 @@ let g:dracula_colorterm = 0
 set shiftwidth=4
 set tabstop=4
 " 对部分语言设置单独的缩进 [两空格缩进]
-au FileType scheme,racket,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
-au FileType scheme,racket,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
+au FileType scheme,racket,bash,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
+au FileType scheme,racket,bash,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
 " ;c 复制至公共剪贴板
 vmap <leader>c "+y
 " ;a 复制所有至公共剪贴板

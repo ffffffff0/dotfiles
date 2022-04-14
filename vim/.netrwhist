@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/vagrant/dotfiles/vim'
+let g:netrw_dirhist_2='/home/vagrant/dotfiles/vim/plugged'
+let g:netrw_dirhist_3='/home/vagrant/dotfiles/vim/plugged/dracula'
+let g:netrw_dirhist_4='/home/vagrant/dotfiles/vim/plugged/coc.nvim'
