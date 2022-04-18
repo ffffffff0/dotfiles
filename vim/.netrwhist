@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/vagrant/identidock/app'
+let g:netrw_dirhist_5='/home/vagrant/leetcode'
+let g:netrw_dirhist_4='/home/vagrant/leetcode/app/src/main/java/leetcode/app/lc2'
+let g:netrw_dirhist_3='/home/vagrant/leetcode/app/src/main/java/leetcode/app'
+let g:netrw_dirhist_2='/home/vagrant/leetcode/app/src/main/java/leetcode'
 let g:netrw_dirhist_1='/home/vagrant/dotfiles/vim'
-let g:netrw_dirhist_2='/home/vagrant/dotfiles/vim/plugged'
-let g:netrw_dirhist_3='/home/vagrant/dotfiles/vim/plugged/dracula'
-let g:netrw_dirhist_4='/home/vagrant/dotfiles/vim/plugged/coc.nvim'

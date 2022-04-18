@@ -15,6 +15,19 @@
 " ;c<space>                加上注释/取消注释，智能判断
 " ;cy                      先复制，再注释
 "
+" ----------- 文件目录操作命令-----------
+" r                        重命名文件或者文件夹
+" a                        增加文件
+" A                        增加文件夹
+" R                        刷新
+" yp                       复制文件路径
+" yn                       复制文件名
+" yy                       复制文件
+" dd                       剪切文件
+" df                       删除文件或者文件夹, 进入垃圾箱
+" dF                       彻底删除文件或者文件夹
+" q                        退出
+" f                        搜索
 " ----------- 格式化命令 ----------------
 "
 " ==                       缩进当前行
@@ -130,8 +143,8 @@ let g:dracula_colorterm = 0
 set shiftwidth=4
 set tabstop=4
 " 对部分语言设置单独的缩进 [两空格缩进]
-au FileType scheme,racket,bash,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
-au FileType scheme,racket,bash,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
+au FileType scheme,racket,sh,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
+au FileType scheme,racket,sh,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
 " ;c 复制至公共剪贴板
 vmap <leader>c "+y
 " ;a 复制所有至公共剪贴板
@@ -196,6 +209,9 @@ inoremap ( ()<ESC>i
 inoremap [ []<ESC>i
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
+inoremap { {}<ESC>i
+" 花括号自动跳转到下一行
+" inoremap { {<CR>}<ESC>O
 " 使用 vimdiff 时，长行自动换行
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 syntax enable                " 打开语法高亮
@@ -218,7 +234,7 @@ let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 
 " floaterm            浮动termianl
-let g:floaterm_wintype       = 'vsplit'
+let g:floaterm_wintype       = 'hsplit'
 let g:floaterm_keymap_next   = '<leader>fh'
 let g:floaterm_keymap_prev   = '<leader>fl'
 let g:floaterm_keymap_new    = '<leader>fn'
