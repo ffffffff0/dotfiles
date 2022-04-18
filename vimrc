@@ -15,7 +15,8 @@
 " ;c<space>                加上注释/取消注释，智能判断
 " ;cy                      先复制，再注释
 "
-" ----------- 文件目录操作命令-----------
+" ----------- 文件目录操作命令 -----------
+"
 " r                        重命名文件或者文件夹
 " a                        增加文件
 " A                        增加文件夹
@@ -28,6 +29,19 @@
 " dF                       彻底删除文件或者文件夹
 " q                        退出
 " f                        搜索
+" gl                       展开全部文件夹
+" gh                       收起全部文件夹
+"
+"
+"------------ coc-floaterm 命令 ---------
+"
+" ff                       新建一个float termianl
+" fn                       下一个 terminal
+" fp                       上一个 terminal
+" ft                       遍历所有 terminal
+" fk                       杀死当前 terminal
+" fh                       隐藏当前 terminal
+"
 " ----------- 格式化命令 ----------------
 "
 " ==                       缩进当前行
@@ -235,9 +249,10 @@ let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 
 " floaterm            浮动termianl
 let g:floaterm_wintype       = 'hsplit'
-let g:floaterm_keymap_next   = '<leader>fh'
-let g:floaterm_keymap_prev   = '<leader>fl'
-let g:floaterm_keymap_new    = '<leader>fn'
+let g:floaterm_keymap_hide   = '<leader>fh'
+let g:floaterm_keymap_prev   = '<leader>fp'
+let g:floaterm_keymap_next   = '<leader>fn'
+let g:floaterm_keymap_new    = '<leader>ff'
 let g:floaterm_keymap_toggle = '<leader>ft'
 let g:floaterm_keymap_kill   = '<leader>fk'
 let g:floaterm_height = 1.0
