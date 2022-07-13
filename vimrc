@@ -248,13 +248,14 @@ let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 
 " floaterm            浮动termianl
-let g:floaterm_wintype       = 'hsplit'
+let g:floaterm_wintype       = 'float'
 let g:floaterm_keymap_hide   = '<leader>fh'
 let g:floaterm_keymap_prev   = '<leader>fp'
 let g:floaterm_keymap_next   = '<leader>fn'
 let g:floaterm_keymap_new    = '<leader>ff'
 let g:floaterm_keymap_toggle = '<leader>ft'
 let g:floaterm_keymap_kill   = '<leader>fk'
+let g:floaterm_keymap_show   = '<leader>fs'
 let g:floaterm_height = 1.0
 
 " AirLine             彩色状态栏
