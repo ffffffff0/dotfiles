@@ -148,6 +148,8 @@ Plug 'google/vim-searchindex'
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
+" 同步剪切板
+set clipboard=unnamed
 " 主题设置
 colorscheme dracula
 set guifont=Monaco\ 11
@@ -160,13 +162,13 @@ set tabstop=4
 au FileType scheme,racket,sh,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set shiftwidth=2
 au FileType scheme,racket,sh,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,slim,pug,scss set tabstop=2
 " ;c 复制至公共剪贴板
-vmap <leader>c "+y
+" vmap <leader>c "+y
 " ;a 复制所有至公共剪贴板
-nmap <leader>a <esc>ggVG"+y<esc>
+" nmap <leader>a <esc>ggVG"+y<esc>
 " ;v 从公共剪贴板粘贴
-imap <leader>v <esc>"+p
-nmap <leader>v "+p
-vmap <leader>v "+p
+" imap <leader>v <esc>"+p
+" nmap <leader>v "+p
+" vmap <leader>v "+p
 
 set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
