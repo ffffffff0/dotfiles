@@ -1,5 +1,3 @@
-" ----------- Leader 系按键 -------------
-"
 " ;d                       向下翻半屏
 " ;u                       向上翻半屏
 " ;1                       移动到行首
@@ -14,33 +12,6 @@
 " ;cu                      取消注释
 " ;c<space>                加上注释/取消注释，智能判断
 " ;cy                      先复制，再注释
-"
-" ----------- 文件目录操作命令 -----------
-"
-" r                        重命名文件或者文件夹
-" a                        增加文件
-" A                        增加文件夹
-" R                        刷新
-" yp                       复制文件路径
-" yn                       复制文件名
-" yy                       复制文件
-" dd                       剪切文件
-" df                       删除文件或者文件夹, 进入垃圾箱
-" dF                       彻底删除文件或者文件夹
-" q                        退出
-" f                        搜索
-" gl                       展开全部文件夹
-" gh                       收起全部文件夹
-"
-"
-"------------ coc-floaterm 命令 ---------
-"
-" ff                       新建一个float termianl
-" fn                       下一个 terminal
-" fp                       上一个 terminal
-" ft                       遍历所有 terminal
-" fk                       杀死当前 terminal
-" fh                       隐藏当前 terminal
 "
 " ----------- 格式化命令 ----------------
 "
@@ -62,11 +33,12 @@
 "
 " ----------- 跳转命令 ------------------
 "
-" Ctrl + O                 跳转到上一个编辑位置
-" Ctrl + I                 跳转到下一个编辑位置
 " %                        在匹配的括号间跳跃
 " { or }                   按段落上/下跳跃
 " gd                       跳至当前光标所在单词首次出现的位置
+" zt                       将光标所在行移动到窗口的顶端
+" zz                       将光标所在行移动到窗口的中间
+" zb                       将光标所在行移动到窗口的底部
 "
 " ----------- 文本操作 --------------------
 "
@@ -120,6 +92,8 @@ let &t_EI.="\e[1 q"
 autocmd VimEnter * silent !echo -ne "\e[1 q"
 " " 离开vim后，恢复shell模式下的光标形状: 闪烁的竖线
 autocmd VimLeave * silent !echo -ne "\e[5 q"
+" kj 替换 Esc
+inoremap kj <Esc>
 " 判断操作系统类型
 if(has('win32') || has('win64'))
     let g:isWIN = 1
@@ -141,17 +115,15 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
-Plug 'liuchengxu/vista.vim'
 Plug 'google/vim-searchindex'
-Plug 'voldikss/vim-floaterm'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 " 同步剪切板
 set clipboard=unnamed
-" 主题设置
-colorscheme dracula
 set guifont=Monaco\ 11
 " 针对terminal背景灰色
 let g:dracula_colorterm = 0
@@ -196,9 +168,20 @@ set list                     " 显示特殊字符，其中Tab使用高亮~代替
 set listchars=tab:\~\ ,trail:.
 set expandtab                " 将 Tab 自动转化成空格 [需要输入真正的 Tab 符时，使用 Ctrl+V + Tab]
 set showmatch                " 显示括号配对情况
+" 取消换行
+set nowrap
+" How many tenths of a second to blink when matching brackets
+set matchtime=2
 set splitbelow               " :sp  切分窗口显示在下侧
 set splitright               " :vsp 切分窗口显示在右侧
 set shell=zsh               " Terminal 默认使用 Bash
+" 在状态栏显示正在输入的命令
+set showcmd
+" 左下角显示当前vim模式
+set showmode
+
+" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
+set scrolloff=7
 " 向下翻半屏
 nmap <Leader>u <C-U>
 " 向上翻半屏
@@ -249,42 +232,9 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']  " 设置对齐线字符�
 let g:indentLine_color_term = 239              " 设置非 GUI 线条颜色
 let g:indentLine_color_gui  = '#A4E57E'        " 设置 GUI 线条颜色
 
-" floaterm            浮动termianl
-let g:floaterm_wintype       = 'float'
-let g:floaterm_keymap_hide   = '<leader>fh'
-let g:floaterm_keymap_prev   = '<leader>fp'
-let g:floaterm_keymap_next   = '<leader>fn'
-let g:floaterm_keymap_new    = '<leader>ff'
-let g:floaterm_keymap_toggle = '<leader>ft'
-let g:floaterm_keymap_kill   = '<leader>fk'
-let g:floaterm_keymap_show   = '<leader>fs'
-let g:floaterm_height = 1.0
-
 " AirLine             彩色状态栏
 let g:airline_theme           = 'badwolf'      " 设置主题
 let g:airline_powerline_fonts = 0              " 关闭自定义字体
-
-" Coc-exploer         文件树
-" <Enter>  进入文件夹
-" <Backspace>  上一个文件夹
-nnoremap <leader>ce :CocCommand explorer<CR>
-
-" Vista 实现函数侧边栏导航
-let g:vista_sidebar_position = "vertical topright"
-let g:vista_default_executive = 'coc'
-let g:vista_finder_alternative_executives = 'ctags'
-nnoremap  <leader>va :Vista<CR>
-nnoremap  <leader>cv :Vista!<CR>
-nnoremap  <leader>tv :Vista!!<CR>
-" 启用悬浮窗预览
-let g:vista_echo_cursor_strategy ='floating_win'
-" 侧边栏宽度.
-let g:vista_sidebar_width = 30
-" 设置为0，以禁用光标移动时的回显
-let g:vista_echo_cursor = 1
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-" 展示最近的函数
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " ;rb                 一键去除全部尾部空白
 imap <leader>rb <esc>:let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
@@ -296,16 +246,46 @@ nmap <leader>rt <esc>:retab<cr>
 nmap <leader>ra <esc>\rt<esc>\rb<esc>gg=G<esc>gg<esc>
 " NERD_commenter      注释处理插件
 let NERDSpaceDelims = 1                        " 自动添加前置空格
+" NERDTree            树形文件浏览器
+let g:NERDTreeShowHidden            = 1        " 显示隐藏文件   [NERDTree]
+let g:NERDTreeGitStatusShowIgnored  = 1        " 显示被忽略图标 [NERDTree-Git-Plugin]
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+            \ 'Modified'  : '✹',
+            \ 'Staged'    : '✚',
+            \ 'Untracked' : '✭',
+            \ 'Renamed'   : '➜',
+            \ 'Unmerged'  : '═',
+            \ 'Deleted'   : '✖',
+            \ 'Dirty'     : '✗',
+            \ 'Clean'     : '✔︎',
+            \ 'Unknown'   : '?'
+            \ }                                " 为 NERDTree-Git-Plugin 设定各个状态对应的符号
 
-" CoC 配置
-" Use tab for trigger completion with characters ahead and navigate.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" ;ce                 打开文件树窗口，在左侧栏显示 [NERDTree 插件]
+nmap <leader>ce :NERDTree<cr>
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" 搜索相关
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+" 进入搜索Use sane regexes"
+nnoremap / /\v
+vnoremap / /\v
+
+" 去掉搜索高亮
+noremap <silent><leader>/ :nohls<CR>
+
+" switch # *
+nnoremap # *
+nnoremap * #
+
+" => 选中及操作改键
+" 调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+" y$ -> Y Make Y behave like other capitals
+map Y y$
+" Quickly close the current window
+nnoremap <leader>q :q<CR>
+
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
