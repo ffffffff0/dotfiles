@@ -109,8 +109,10 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'voldikss/vim-floaterm'
+Plug 'jiangmiao/auto-pairs'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'bagrat/vim-buffet'
 call plug#end()
-
 " 同步剪切板
 set clipboard=unnamed
 " 设置通用缩进策略
@@ -190,11 +192,11 @@ nmap <Leader>s :Sex<CR>
 " 竖直分割
 nmap <Leader>v :Vex<CR>
 " 括号匹配
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap { {}<ESC>i
+" inoremap ( ()<ESC>i
+" inoremap [ []<ESC>i
+" inoremap ' ''<ESC>i
+" inoremap " ""<ESC>i
+" inoremap { {}<ESC>i
 " 花括号自动跳转到下一行
 " inoremap { {<CR>}<ESC>O
 " 使用 vimdiff 时，长行自动换行
@@ -291,11 +293,64 @@ inoremap <silent><expr> <Tab>
 " floaterm            浮动termianl
 let g:floaterm_wintype       = 'float'
 let g:floaterm_keymap_hide   = '<leader>fh'
-let g:floaterm_keymap_prev   = '<leader>fp'
-let g:floaterm_keymap_next   = '<leader>fn'
 let g:floaterm_keymap_new    = '<leader>ff'
-let g:floaterm_keymap_toggle = '<leader>ft'
+" let g:floaterm_keymap_toggle = '<leader>ft'
 let g:floaterm_keymap_kill   = '<leader>fk'
 let g:floaterm_keymap_show   = '<leader>fs'
 let g:floaterm_height = 1.0
 
+" auto-pair fly mode
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<M-b>'
+
+" leaderF 模糊查询
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>gf"
+noremap <leader>gb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>gm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>gt :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>gl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap fo :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>gr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+" 跳转到定义处
+noremap <leader>gd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>go :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>gn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>gp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+" vim buffer
+
+" 遍历 buffer 窗口
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+
+noremap <Leader><Tab> :Bw<CR>
+noremap <Leader><S-Tab> :Bw!<CR>
+noremap <C-t> :tabnew split<CR>
+
+" always show tabline and index
+let g:buffet_always_show_tabline=1
+let g:buffet_show_index=1
+
+let g:buffet_powerline_separators = 1
+let g:buffet_left_trunc_icon = "\uf0a8"
+let g:buffet_right_trunc_icon = "\uf0a9"

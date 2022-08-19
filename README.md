@@ -27,7 +27,9 @@ Make sure use vim >= 8.1.1719 or neovim >= 0.4.0 and Install nodejs >= 14.14:
 
 输入`:CocConfig` 来打开coc配置文件 coc-setting.json
 
-因为 leaderF 需要python的支持，需要python环境
+- LeaderF 设置
+
+需要vim支持python和global tags
 
 
 
