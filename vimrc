@@ -112,6 +112,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'bagrat/vim-buffet'
+Plug 'andymass/vim-matchup'
 call plug#end()
 " 同步剪切板
 set clipboard=unnamed
@@ -338,14 +339,16 @@ noremap <leader>gn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <leader>gp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 " vim buffer
-
-" 遍历 buffer 窗口
+" 向后遍历 buffer 窗口
 noremap <Tab> :bn<CR>
+" 向前遍历窗口
 noremap <S-Tab> :bp<CR>
-
+" 关闭窗口, 不能有修改，向前遍历
 noremap <Leader><Tab> :Bw<CR>
+" 关闭窗口,舍弃修改，向前遍历
 noremap <Leader><S-Tab> :Bw!<CR>
-noremap <C-t> :tabnew split<CR>
+" 创建一个tab
+noremap <Leader>nt :tabnew split<CR>
 
 " always show tabline and index
 let g:buffet_always_show_tabline=1
