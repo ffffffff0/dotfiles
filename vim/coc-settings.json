@@ -1,0 +1,14 @@
+{
+  "languageserver": {
+    "racket": {
+      "command": "racket",
+      "args": [
+        "-l",
+        "racket-langserver"
+      ],
+      "filetypes": [
+        "scheme", "rkt"
+      ]
+    }
+  }
+}

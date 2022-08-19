@@ -1,4 +1,3 @@
-" ;d                       向下翻半屏
 " ;u                       向上翻半屏
 " ;1                       移动到行首
 " ;2                       移动到行尾
@@ -76,6 +75,8 @@
 " ds"                      删除外围的双引号定界符         [surround 插件]
 " ysiw"                    为单词增加双引号
 "
+"set color scheme
+colorscheme monokai
 " 省略警告
 let g:coc_disable_startup_warning = 1
 " 让setting变更立即生效
@@ -94,23 +95,9 @@ autocmd VimEnter * silent !echo -ne "\e[1 q"
 autocmd VimLeave * silent !echo -ne "\e[5 q"
 " kj 替换 Esc
 inoremap kj <Esc>
-" 判断操作系统类型
-if(has('win32') || has('win64'))
-    let g:isWIN = 1
-    let g:isMAC = 0
-else
-    if system('uname') =~ 'Darwin'
-        let g:isWIN = 0
-        let g:isMAC = 1
-    else
-        let g:isWIN = 0
-        let g:isMAC = 0
-    endif
-endif
 
 " 加载插件管理器
 call plug#begin()
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/indentLine'
@@ -120,13 +107,12 @@ Plug 'google/vim-searchindex'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 " 同步剪切板
 set clipboard=unnamed
-set guifont=Monaco\ 11
-" 针对terminal背景灰色
-let g:dracula_colorterm = 0
 " 设置通用缩进策略
 set shiftwidth=4
 set tabstop=4
@@ -289,3 +275,27 @@ nnoremap <leader>q :q<CR>
 
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
+
+"**************coc.vim*******************************
+" use <tab> for trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+
+" floaterm            浮动termianl
+let g:floaterm_wintype       = 'float'
+let g:floaterm_keymap_hide   = '<leader>fh'
+let g:floaterm_keymap_prev   = '<leader>fp'
+let g:floaterm_keymap_next   = '<leader>fn'
+let g:floaterm_keymap_new    = '<leader>ff'
+let g:floaterm_keymap_toggle = '<leader>ft'
+let g:floaterm_keymap_kill   = '<leader>fk'
+let g:floaterm_keymap_show   = '<leader>fs'
+let g:floaterm_height = 1.0
+
