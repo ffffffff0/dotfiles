@@ -320,10 +320,6 @@ let g:floaterm_keymap_kill   = '<leader>fk'
 let g:floaterm_keymap_show   = '<leader>fs'
 let g:floaterm_height = 1.0
 
-" auto-pair fly mode
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutBackInsert = '<M-b>'
-
 " leaderF 模糊查询
 " don't show the help in normal mode
 let g:Lf_HideHelp = 1
