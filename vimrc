@@ -252,6 +252,13 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 " ;ce                 打开文件树窗口，在左侧栏显示 [NERDTree 插件]
 nmap <leader>ce :NERDTree<cr>
+" t 在标签页中打开
+" T 在后台标签页中打开
+" p 到上层目录
+" P 到根目录
+" K 到同目录第一个节点
+" J 到同目录最后一个节点
+" m 显示文件系统菜单（添加、删除、移动操作）
 
 " 搜索相关
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
@@ -291,6 +298,19 @@ inoremap <silent><expr> <Tab>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+" rename symbol
+nmap <leader>rs  <Plug>(coc-rename)
+" go to definition
+nmap <silent> gd <Plug>(coc-definition)
+" go to type definition
+nmap <silent> gy <Plug>(coc-type-definition)
+" go to implementation
+nmap <silent> gi <Plug>(coc-implementation)
+" go to references
+nmap <silent> gr <Plug>(coc-references)
+
 " floaterm            浮动termianl
 let g:floaterm_wintype       = 'float'
 let g:floaterm_keymap_hide   = '<leader>fh'
@@ -316,31 +336,31 @@ let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
-let g:Lf_ShortcutF = "<leader>gf"
-noremap <leader>gb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
-noremap <leader>gm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
-noremap <leader>gt :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
-noremap <leader>gl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+let g:Lf_ShortcutF = "<leader>lf"
+noremap <leader>lb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>lm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>lt :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>ll :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
 noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search visually selected text literally
-xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
-noremap fo :<C-U>Leaderf! rg --recall<CR>
+xnoremap lf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap lo :<C-U>Leaderf! rg --recall<CR>
 
 " should use `Leaderf gtags --update` first
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_Gtagslabel = 'native-pygments'
-noremap <leader>gr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>lr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 " 跳转到定义处
-noremap <leader>gd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
-noremap <leader>go :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>gn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>gp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+noremap <leader>ld :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>lo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>ln :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>lp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 " vim buffer
 " 向后遍历 buffer 窗口
-noremap <Tab> :bn<CR>
+noremap <Space> :bn<CR>
 " 向前遍历窗口
 noremap <S-Tab> :bp<CR>
 " 关闭窗口, 不能有修改，向前遍历
