@@ -1,6 +1,6 @@
 ## dotfiles
 
-确保vim版本>=8.1
+确保vim版本>=8.1 
 
 - vim
 vim 配置
