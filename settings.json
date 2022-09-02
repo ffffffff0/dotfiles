@@ -47,10 +47,15 @@
     //   ;s               跳转symbol
     //   ;<space>         删除行尾空格
     //   ;p               显示命令窗口
-    //   ;;               
+    // ################################### vim-easymotion
+    //   ;;s<char>        全局搜索字符
+    //   ;;f<char>        搜索该字符之后的字符
+    //   ;;F<char>        搜索该字符之前的字符
     // ######################################### 普通命令
     //   cw               替换单词
     //   dw               删除单词
+    //   zz               将本行放在屏幕中间
+    //   zt               将本行放在屏幕顶部
     //#################################################################################
     //#################################################################################
     //#################################################################################
@@ -144,8 +149,6 @@
     "search.smartCase": true,
 
     // ## Extension: vim
-    "vim.leader": ";",
-    "vim.incsearch": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["leader", "2"],
@@ -276,8 +279,6 @@
             ]
         },
     ],
-    "vim.easymotion": true,
-
     // ## Extension: scrolloff
     "scrolloff.scrolloff": 7,
 
@@ -295,9 +296,8 @@
     // not show in real
     "errorLens.onSave": true,
     "vim.useSystemClipboard": true,
-    "redhat.telemetry.enabled": true,
-    "workbench.startupEditor": "none",
     "window.zoomLevel": 0.5,
-    "go.toolsManagement.autoUpdate": true,
-    "vsicons.dontShowNewVersionMessage": true,
+    "vim.easymotion": true,
+    "vim.leader": ";",
+    "vim.incsearch": true,
 }
