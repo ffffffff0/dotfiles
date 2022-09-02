@@ -1,0 +1,303 @@
+{
+    //#################################################################################
+    //#################################################################################
+    //#################################################################################
+    // plugin
+    // - vim
+    // - Dracula official
+    // - Error lens
+    // - Git Graph
+    // - Scrolloff
+    //############################## vim ################################################
+    // #############################################- vim-surround 用法
+    //   press cs"' inside
+    //   "Hello world!" --> 'Hello world!'
+    //   press cs'<q> to change it to
+    //   'Hello world!' --> <q>Hello world!</q>
+    //   press cst" to get
+    //   <q>Hello world!</q> --> "Hello world!"
+    //   press ds".
+    //   "Hello world" --> Hello world!
+    //   press ysiw] (iw is a text object).
+    //   Hello world! --> [Hello] world!
+    //   press cs]{
+    //   [Hello] world! --> { Hello } world!
+    //   press yssb or yss).
+    //   { Hello } world! --> ({ Hello } world!)
+    //   Revert to the original text: ds{ds)
+    //   ({ Hello } world!) --> Hello world!
+    //   Emphasize hello: ysiw<em>
+    //   Hello world! --> <em>Hello</em> world!
+    // ############################################- leader 快捷键
+    //   ;f               快速打开文件
+    //   ;gd              跳转到定义处
+    //   ;d               down 向下翻页
+    //   ;u               up 向上翻页
+    //   ;w               保存文件
+    //   ;q               退出文件
+    //   ;1               到行首
+    //   ;2               到行尾
+    //   ;h               跳转到上一个文件
+    //   ;l               跳转到下一个文件
+    //   ;gi              跳转到实现处
+    //   ;rn              重命名变量
+    //   ;cc              注释
+    //   ;cu              取消注释
+    //   ;gh              显示定义
+    //   ;s               跳转symbol
+    //   ;<space>         删除行尾空格
+    //   ;p               显示命令窗口
+    //   ;;               
+    // ######################################### 普通命令
+    //   cw               替换单词
+    //   dw               删除单词
+    //#################################################################################
+    //#################################################################################
+    //#################################################################################
+    "editor.fontSize": 14,
+    "editor.fontFamily": "FiraCode-Retina, Fira Code",
+    "editor.fontLigatures": true,
+    // 开启花括号颜色
+    "editor.bracketPairColorization.enabled": true,
+    // 禁止编辑区滚动到最后一行下面 prevent the editor from scrolling beyond the last line.
+    "editor.scrollBeyondLastLine": false,
+    // 查找框展示导致鼠标能往上滚动一行
+    "editor.find.addExtraSpaceOnTop": false,
+    // 显示 120 字符竖线 the 120 characters line
+    "editor.rulers": [120],
+    // 关闭小地图 disable the minimap
+    "editor.minimap.enabled": false,
+    // 设置注释的颜色 以及斜体展示 set comment italic
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                // comments color, like jetbrains
+                "scope": [
+                    "comment",
+                    "comment.line",
+                    "comment.block",
+                    "comment.block.documentation",
+                    "string.quoted.docstring.multi.python",
+                    "punctuation.definition.comment",
+                    "punctuation.definition.comment.begin.documentation",
+                    "punctuation.definition.comment.end.documentation",
+                ],
+                "settings": {
+                    "fontStyle": "italic",
+                    "foreground": "#808080",
+                }
+            },
+        ]
+    },
+    // 提示相关 suggestion
+    // "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.suggestSelection": "first",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true,
+    },
+    // "editor.acceptSuggestionOnEnter": "smart", // "on", "off", "smart"
+    // Enable parameter hints => 默认开启的, 觉得信息过多的话, 关闭
+    "editor.parameterHints.enabled": false,
+    "editor.inlineSuggest.enabled": true,
+
+    // ## workbench
+    "workbench.colorTheme": "Dracula Soft",
+    "workbench.iconTheme": "vscode-icons",
+    // 编辑区域配色 color like jetbrains
+    "workbench.colorCustomizations": {
+        // 设置光标颜色
+        "editorCursor.foreground": "#e9e6e6",
+        // 设置状态栏的颜色
+        "statusBar.background": "#bb088e",
+        //设置用户选中代码段的颜色
+        "editor.selectionBackground": "#7f84a2d2",
+        "editor.selectionHighlightBackground": "#7f84a2d2",
+        //设置活动tab窗口颜色
+        // "tab.activeBackground": "#bb088e"
+    },
+    // 高亮显示被修改的tab
+    "workbench.editor.highlightModifiedTabs": true,
+
+    // 隐藏哪些文件
+    "files.exclude": {
+        ".idea": true,
+        ".vscode": true,
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "node_modules/": true,
+        "templates_module/": true,
+        "**/.project": true,
+        ".mypy_cache/": true,
+        "**/.classpath": true,
+        "**/.coverage": true,
+        "**/.factorypath": true,
+        "**/.settings": true,
+    },
+    "files.autoSave": "onWindowChange",
+
+    // ## search
+    // 显示检索到的位置的行号
+    "search.showLineNumbers": true,
+    // 是否智能大小写
+    "search.smartCase": true,
+
+    // ## Extension: vim
+    "vim.leader": ";",
+    "vim.incsearch": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["leader", "2"],
+            "after": ["$"]
+        },
+        {
+            "before": ["leader", "1"],
+            "after": ["^"]
+        },
+        {
+            "before": ["leader", "d"],
+            "after": ["<C-D>"]
+        },
+        {
+            "before": ["leader", "u"],
+            "after": ["<C-U>"]
+        },
+        {
+            "before": ["leader", "l"],
+            "commands": ["workbench.action.nextEditor"]
+        },
+        {
+            "before": ["leader", "h"],
+            "commands": ["workbench.action.previousEditor"]
+        },
+        {
+            "before": ["leader", "q"],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                },
+                {
+                    "command": "workbench.action.closeActiveEditor",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "w"],
+            "commands": [
+                {
+                    "command": "workbench.action.files.save",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": ["leader", "g", "d"],
+            "after": ["g", "d"]
+        },
+        {
+            "before": ["leader", "g", "i"],
+            "commands": [
+                {
+                    "command": "editor.action.goToImplementation",
+                }
+            ]
+        },
+        {
+            "before": ["leader", "g", "h"],
+            "after": ["g", "h"]
+        },
+        {
+            "before": ["leader", "c", "c"],
+            "commands": ["editor.action.addCommentLine"]
+        },
+        {
+            "before": ["leader", "c", "u"],
+            "commands": ["editor.action.removeCommentLine"]
+        },
+        {
+            "before": ["leader", "r", "n"],
+            "commands": ["editor.action.rename"]
+        },
+        {
+            "before": ["leader", "space"],
+            "commands": ["editor.action.trimTrailingWhitespace"]
+        },
+        {
+            "before": ["leader", "p"],
+            "commands": [
+                "workbench.action.showCommands",
+            ]
+        },
+        {
+            "before": ["leader", "f"],
+            "commands": [
+                "workbench.action.quickOpen",
+            ]
+        },
+        {
+            "before": ["leader", "s"],
+            "commands": [
+                "workbench.action.gotoSymbol",
+            ]
+        },
+        {
+            "before":["leader", "/"],
+            "commands": [
+                ":nohl",
+            ]
+        },
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "c", "c"],
+            "commands": ["editor.action.addCommentLine"]
+        },
+        {
+            "before": ["<leader>", "c", "u"],
+            "commands": ["editor.action.removeCommentLine"]
+        },
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
+    "vim.easymotion": true,
+
+    // ## Extension: scrolloff
+    "scrolloff.scrolloff": 7,
+
+    // ## Extension: errorLens
+    "errorLens.statusBarColorsEnabled": true,
+    "errorLens.margin": "6ch",
+    "errorLens.fontWeight": "100",
+    "errorLens.fontStyleItalic": true,
+    "errorLens.fontSize": "13",
+    "errorLens.followCursor": "closestProblem",
+    "errorLens.gutterIconsEnabled": true,
+    "errorLens.excludeBySource": [
+        "cSpell"
+    ],
+    // not show in real
+    "errorLens.onSave": true,
+    "vim.useSystemClipboard": true,
+    "redhat.telemetry.enabled": true,
+    "workbench.startupEditor": "none",
+    "window.zoomLevel": 0.5,
+    "go.toolsManagement.autoUpdate": true,
+    "vsicons.dontShowNewVersionMessage": true,
+}

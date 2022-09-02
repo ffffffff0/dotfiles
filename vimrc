@@ -113,7 +113,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'bagrat/vim-buffet'
 Plug 'andymass/vim-matchup'
+Plug 'neoclide/jsonc.vim'
 call plug#end()
+" jsonc settings 让json 的注释不报错
+autocmd BufRead,BufNewFile *.json set filetype=jsonc
 " 同步剪切板
 set clipboard=unnamed
 " 设置通用缩进策略
@@ -333,12 +336,17 @@ let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu S
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 
 let g:Lf_ShortcutF = "<leader>lf"
+
 noremap <leader>lb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+
 noremap <leader>lm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+
 noremap <leader>lt :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+
 noremap <leader>ll :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
 noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search visually selected text literally
 xnoremap lf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
