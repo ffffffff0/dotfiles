@@ -1,0 +1,26 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    // 使用tab选择自动补全
+    {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    // 搜索后将焦点放在目录树
+    {
+        "key": "Escape",
+        "command": "workbench.view.explorer",
+        "when": "searchViewletVisible"
+    },
+    // 打开和隐藏终端
+    {
+        "key": "ctrl+oem_1",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    // 搜索文件
+    {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.findInFiles"
+    },
+]
