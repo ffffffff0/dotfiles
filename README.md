@@ -6,7 +6,11 @@
 vim 配置
 
 - ideavimrc
-IDEA vim 插件配置
+  IDEA vim 插件配置
+
+- settings.json
+
+  vscode vim 配置
 
 ### 使用方法
 
@@ -30,7 +34,6 @@ Make sure use vim >= 8.1.1719 or neovim >= 0.4.0 and Install nodejs >= 14.14:
 - LeaderF 设置
 
 需要vim支持python和global tags
-
 
 
 
