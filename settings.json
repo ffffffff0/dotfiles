@@ -173,6 +173,8 @@
     "editor.rulers": [120],
     // 关闭小地图 disable the minimap
     "editor.minimap.enabled": false,
+    // 相对行号
+    // "editor.lineNumbers": "relative",
     // 设置注释的颜色 以及斜体展示 set comment italic
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -203,9 +205,6 @@
       "comments": true,
       "strings": true
     },
-    // "editor.acceptSuggestionOnEnter": "smart", // "on", "off", "smart"
-    // Enable parameter hints => 默认开启的, 觉得信息过多的话, 关闭
-    "editor.parameterHints.enabled": false,
     "editor.inlineSuggest.enabled": true,
 
     // ## workbench
@@ -401,5 +400,7 @@
     "vim.easymotion": true,
     "vim.leader": ";",
     "vim.incsearch": true,
-    "editor.guides.bracketPairs": "active"
+    "vim.debug.loggingLevelForAlert": "warn",
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.guides.bracketPairs": true
 }
