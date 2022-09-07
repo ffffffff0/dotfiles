@@ -163,6 +163,7 @@
     "editor.fontSize": 14,
     "editor.fontFamily": "FiraCode-Retina, Fira Code",
     "editor.fontLigatures": true,
+    "workbench.editor.enablePreview": false,
     // 开启花括号颜色
     "editor.bracketPairColorization.enabled": true,
     // 禁止编辑区滚动到最后一行下面 prevent the editor from scrolling beyond the last line.
