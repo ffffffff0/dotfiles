@@ -1,80 +1,3 @@
-" ;u                       向上翻半屏
-" ;1                       移动到行首
-" ;2                       移动到行尾
-" ;ce                      打开文件目录树
-" ;il                      打开identLine
-" ;rb                      去除一行尾部的空白
-" ;rt                      一键替换全部 Tab 为空格
-" ;s                       水平分割
-" ;v                       竖直分割
-" ;cc                      加注释
-" ;cu                      取消注释
-" ;c<space>                加上注释/取消注释，智能判断
-" ;cy                      先复制，再注释
-"
-" ----------- 格式化命令 ----------------
-"
-" ==                       缩进当前行
-" =G                       缩进直到文件结尾
-" gg=G                     缩进整个文件
-" 行号G=行号G              缩进指定区间
-" u [小写]                 单步复原                 [非插入模式]
-" U [大写]                 整行复原                 [非插入模式]
-" Ctrl + R                 反撤消                   [非插入模式]
-"
-" ----------- 搜索命令 ------------------
-"
-" #                        向前搜索当前光标所在字符
-" *                        向后搜索当前光标所在字符
-" ?                        向前搜索
-" /                        向后搜索
-" :%s/xx/yy/g              正则搜索替换
-"
-" ----------- 跳转命令 ------------------
-"
-" %                        在匹配的括号间跳跃
-" { or }                   按段落上/下跳跃
-" gd                       跳至当前光标所在单词首次出现的位置
-" zt                       将光标所在行移动到窗口的顶端
-" zz                       将光标所在行移动到窗口的中间
-" zb                       将光标所在行移动到窗口的底部
-"
-" ----------- 文本操作 --------------------
-"
-" dw de d0 d^ d$ dd        删除
-" cw ce c0 c^ c$ cc        删除并进入插入模式
-" yw ye y0 y^ y$ yy        复制
-" vw ve v0 v^ v$ vv        选中
-"
-" di分隔符                 删除指定分隔符之间的内容               [不包括分隔符]
-" ci分隔符                 删除指定分隔符之间的内容并进入插入模式 [不包括分隔符]
-" yi分隔符                 复制指定分隔符之间的内容               [不包括分隔符]
-" vi分隔符                 选中指定分隔符之间的内容               [不包括分隔符]
-"
-" da分隔符                 删除指定分隔符之间的内容               [包括分隔符]
-" ca分隔符                 删除指定分隔符之间的内容并进入插入模式 [包括分隔符]
-" ya分隔符                 复制指定分隔符之间的内容               [包括分隔符]
-" va分隔符                 选中指定分隔符之间的内容               [包括分隔符]
-"
-" Xi和Xa都可以在X后面加入一数字，以指代所处理的括号层次
-" 如 d2i( 执行的是删除当前  外围第二层括号内的所有内容
-"
-" dt字符                   删除本行内容，直到遇到第一个指定字符               [不包括该字符]
-" ct字符                   删除本行内容，直到遇到第一个指定字符并进入插入模式 [不包括该字符]
-" yt字符                   复制本行内容，直到遇到第一个指定字符               [不包括该字符]
-" vt字符                   选中本行内容，直到遇到第一个指定字符               [不包括该字符]
-"
-" df字符                   删除本行内容，直到遇到第一个指定字符               [包括该字符]
-" cf字符                   删除本行内容，直到遇到第一个指定字符并进入插入模式 [包括该字符]
-" yf字符                   复制本行内容，直到遇到第一个指定字符               [包括该字符]
-" vf字符                   选中本行内容，直到遇到第一个指定字符               [包括该字符]
-"
-" cs'"                     将外围的单引号变成双引号       [surround 插件]
-" cs"<p>                   将外围的双引号变成 HTML 标签对 [surround 插件]
-" cst"                     将外围的界定符变成双引号       [surround 插件]
-" ds"                      删除外围的双引号定界符         [surround 插件]
-" ysiw"                    为单词增加双引号
-"
 "set color scheme
 colorscheme monokai
 " 省略警告
@@ -93,8 +16,8 @@ let &t_EI.="\e[1 q"
 autocmd VimEnter * silent !echo -ne "\e[1 q"
 " " 离开vim后，恢复shell模式下的光标形状: 闪烁的竖线
 autocmd VimLeave * silent !echo -ne "\e[5 q"
-" kj 替换 Esc
-inoremap kj <Esc>
+" jk 替换 Esc
+inoremap jk <Esc>
 
 " 加载插件管理器
 call plug#begin()
@@ -169,7 +92,6 @@ set shell=zsh               " Terminal 默认使用 Bash
 set showcmd
 " 左下角显示当前vim模式
 set showmode
-
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=7
 " 向下翻半屏
@@ -182,23 +104,13 @@ map <Leader>2 $
 " 设置快捷键遍历各个分割窗口
 nnoremap <Leader>gg <C-W><C-W>
 " 向左
-nnoremap <leader>h <C-W><C-H>
+nnoremap <leader>a <C-W><C-H>
 " 向右
-nnoremap <leader>l <C-W><C-L>
-" 向上
-nnoremap <Leader>k <C-W><C-K>
-" 向下
-nnoremap <Leader>j <C-W><C-J>
+nnoremap <leader>d <C-W><C-L>
 " 水平分割
 nmap <Leader>s :Sex<CR>
 " 竖直分割
 nmap <Leader>v :Vex<CR>
-" 括号匹配
-" inoremap ( ()<ESC>i
-" inoremap [ []<ESC>i
-" inoremap ' ''<ESC>i
-" inoremap " ""<ESC>i
-" inoremap { {}<ESC>i
 " 花括号自动跳转到下一行
 " inoremap { {<CR>}<ESC>O
 " 使用 vimdiff 时，长行自动换行
@@ -270,7 +182,6 @@ vnoremap / /\v
 
 " 去掉搜索高亮
 noremap <silent><leader>/ :nohls<CR>
-
 " switch # *
 nnoremap # *
 nnoremap * #
@@ -279,11 +190,8 @@ nnoremap * #
 " 调整缩进后自动选中，方便再次操作
 vnoremap < <gv
 vnoremap > >gv
-" y$ -> Y Make Y behave like other capitals
-map Y y$
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
-
 " Quickly save the current file
 nnoremap <leader>w :w<CR>
 
@@ -311,25 +219,23 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 " go to references
 nmap <silent> gr <Plug>(coc-references)
-
 " floaterm            浮动termianl
 let g:floaterm_wintype       = 'float'
 let g:floaterm_keymap_hide   = '<leader>fh'
 let g:floaterm_keymap_new    = '<leader>ff'
-" let g:floaterm_keymap_toggle = '<leader>ft'
 let g:floaterm_keymap_kill   = '<leader>fk'
 let g:floaterm_keymap_show   = '<leader>fs'
 let g:floaterm_height = 1.0
 
 " vim buffer
 " 向后遍历 buffer 窗口
-noremap <Space> :bn<CR>
+noremap <Leader>l :bn<CR>
 " 向前遍历窗口
-noremap <S-Tab> :bp<CR>
+noremap <Leader>h :bp<CR>
 " 关闭窗口, 不能有修改，向前遍历
-noremap <Leader><Tab> :Bw<CR>
+noremap <Leader>q :Bw<CR>
 " 关闭窗口,舍弃修改，向前遍历
-noremap <Leader><S-Tab> :Bw!<CR>
+noremap <Leader>!q :Bw!<CR>
 " 创建一个tab
 noremap <Leader>nt :tabnew split<CR>
 
