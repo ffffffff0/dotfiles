@@ -14,7 +14,7 @@
     },
     // 打开和隐藏终端
     {
-        "key": "ctrl+oem_1",
+        "key": "ctrl+;",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
     },
@@ -24,11 +24,7 @@
         "command": "workbench.action.findInFiles"
     },
     // --- 资源管理器中对文件或目录的操作
-    // 显示文件资源管理器
-    {
-        "key": "ctrl+k",
-        "command": "workbench.files.action.focusFilesExplorer"
-    },
+    // <space> 打开文件
     // 新建文件
     {
         "key": "i",
@@ -54,11 +50,11 @@
         "when": " explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus "
     },
     // 删除文件或目录
-    {
-        "key": "d",
-        "command": "deleteFile",
-        "when": " explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus "
-    },
+    // {
+    //     "key": "d",
+    //     "command": "deleteFile",
+    //     "when": " explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus "
+    // },
     // 剪切文件或目录
     {
         "key": "x",
@@ -76,6 +72,5 @@
         "key": "p",
         "command": "filesExplorer.paste",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
-    },
-
+    }
 ]
