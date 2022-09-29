@@ -30,13 +30,13 @@
     //   Hello world! --> <em>Hello</em> world!
     // ########################################################### leader 快捷键
     //   ;f               快速打开文件
-    //   ;gd              跳转到定义处
+    //   gd              跳转到定义处
     //   ;d               down 向下翻页
     //   ;u               up 向上翻页
     //   ;w               保存文件
     //   ;q               退出文件
-    //   ;1               到行首
-    //   ;2               到行尾
+    //   H                到行首
+    //   L                到行尾
     //   ;h               跳转到上一个文件
     //   ;l               跳转到下一个文件
     //   ;gi              跳转到实现处
@@ -46,7 +46,7 @@
     //   ;s               跳转symbol
     //   ;<space>         删除行尾空格
     //   ;p               显示命令窗口
-    //   ;a               跳转到文件夹目录
+    //   ;a               跳转到文件夹目录, l 返回当前光标所在文件编辑
     //   ;t               打开终端, ctrl+; 隐藏终端
     // ########################################################### vim-easymotion
     //   ;;s<char>        全局搜索字符
@@ -139,7 +139,7 @@
     //   :10s/from/to/g    表示只在第10行搜索替换
     //   :%s/from/to/g     表示在所有行中搜索替换
     //   :1,$s/from/to/g   同上
-    // ######### flag 
+    // ######### flag
     //   c confirm，每次替换前询问
     //   e error，不显示错误
     //   g globle，不询问，整行替换。如果不加 g 选项，则只替换每行的第一个匹配到的字符串
@@ -157,8 +157,11 @@
     // #################### 宏
     //  q{register}         开始进入录制
     //  q                   结束录制
-    //  @{register}                  便会执行宏中的操作
-    //  5@{register}                 执行宏操作5次
+    //  @{register}         便会执行宏中的操作
+    //  5@{register}        执行宏操作5次
+    // ##################### 输入命令
+    //  :vsp                 竖直分屏
+    //  :sp                  横向分屏
     //#################################################################################
     //#################################################################################
     //#################################################################################
@@ -173,7 +176,9 @@
     // 查找框展示导致鼠标能往上滚动一行
     "editor.find.addExtraSpaceOnTop": false,
     // 显示 120 字符竖线 the 120 characters line
-    "editor.rulers": [120],
+    "editor.rulers": [
+        120
+    ],
     // 关闭小地图 disable the minimap
     "editor.minimap.enabled": false,
     // 相对行号
@@ -182,7 +187,6 @@
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
-                // comments color, like jetbrains
                 "scope": [
                     "comment",
                     "comment.line",
@@ -204,9 +208,9 @@
     // "editor.suggestSelection": "recentlyUsedByPrefix",
     "editor.suggestSelection": "first",
     "editor.quickSuggestions": {
-      "other": true,
-      "comments": true,
-      "strings": true
+        "other": true,
+        "comments": true,
+        "strings": true
     },
     "editor.inlineSuggest.enabled": true,
     "workbench.iconTheme": "vscode-icons",
@@ -224,7 +228,6 @@
     },
     // 高亮显示被修改的tab
     "workbench.editor.highlightModifiedTabs": true,
-
     // 隐藏哪些文件
     "files.exclude": {
         ".idea": true,
@@ -241,41 +244,70 @@
         "**/.settings": true
     },
     "files.autoSave": "onWindowChange",
-
     // ## search
     // 显示检索到的位置的行号
     "search.showLineNumbers": true,
     // 是否智能大小写
     "search.smartCase": true,
-
     // ## Extension: vim
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["leader", "2"],
-            "after": ["$"]
+            "before": [
+                "L"
+            ],
+            "after": [
+                "$"
+            ]
         },
         {
-            "before": ["leader", "1"],
-            "after": ["^"]
+            "before": [
+                "H"
+            ],
+            "after": [
+                "^"
+            ]
         },
         {
-            "before": ["leader", "d"],
-            "after": ["<C-D>"]
+            "before": [
+                "leader",
+                "d"
+            ],
+            "after": [
+                "<C-D>"
+            ]
         },
         {
-            "before": ["leader", "u"],
-            "after": ["<C-U>"]
+            "before": [
+                "leader",
+                "u"
+            ],
+            "after": [
+                "<C-U>"
+            ]
         },
         {
-            "before": ["leader", "l"],
-            "commands": ["workbench.action.nextEditor"]
+            "before": [
+                "leader",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
         },
         {
-            "before": ["leader", "h"],
-            "commands": ["workbench.action.previousEditor"]
+            "before": [
+                "leader",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
         },
         {
-            "before": ["leader", "q"],
+            "before": [
+                "leader",
+                "q"
+            ],
             "commands": [
                 {
                     "command": "workbench.action.files.save",
@@ -288,7 +320,10 @@
             ]
         },
         {
-            "before": ["leader", "w"],
+            "before": [
+                "leader",
+                "w"
+            ],
             "commands": [
                 {
                     "command": "workbench.action.files.save",
@@ -297,11 +332,11 @@
             ]
         },
         {
-            "before": ["leader", "g", "d"],
-            "after": ["g", "d"]
-        },
-        {
-            "before": ["leader", "g", "i"],
+            "before": [
+                "leader",
+                "g",
+                "i"
+            ],
             "commands": [
                 {
                     "command": "editor.action.goToImplementation"
@@ -309,70 +344,135 @@
             ]
         },
         {
-            "before": ["leader", "g", "h"],
-            "after": ["g", "h"]
+            "before": [
+                "leader",
+                "c",
+                "c"
+            ],
+            "commands": [
+                "editor.action.addCommentLine"
+            ]
         },
         {
-            "before": ["leader", "c", "c"],
-            "commands": ["editor.action.addCommentLine"]
+            "before": [
+                "leader",
+                "c",
+                "u"
+            ],
+            "commands": [
+                "editor.action.removeCommentLine"
+            ]
         },
         {
-            "before": ["leader", "c", "u"],
-            "commands": ["editor.action.removeCommentLine"]
+            "before": [
+                "leader",
+                "r",
+                "n"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
         },
         {
-            "before": ["leader", "r", "n"],
-            "commands": ["editor.action.rename"]
+            "before": [
+                "leader",
+                "space"
+            ],
+            "commands": [
+                "editor.action.trimTrailingWhitespace"
+            ]
         },
         {
-            "before": ["leader", "space"],
-            "commands": ["editor.action.trimTrailingWhitespace"]
-        },
-        {
-            "before": ["leader", "p"],
+            "before": [
+                "leader",
+                "p"
+            ],
             "commands": [
                 "workbench.action.showCommands"
             ]
         },
         {
-            "before": ["leader", "f"],
+            "before": [
+                "leader",
+                "f"
+            ],
             "commands": [
                 "workbench.action.quickOpen"
             ]
         },
         {
-            "before": ["leader", "s"],
+            "before": [
+                "leader",
+                "s"
+            ],
             "commands": [
                 "workbench.action.gotoSymbol"
             ]
         },
         {
-            "before":["leader", "/"],
+            "before": [
+                "leader",
+                "/"
+            ],
             "commands": [
                 ":nohl"
             ]
         },
         {
-            "before": ["leader", "a"],
+            "before": [
+                "leader",
+                "a"
+            ],
             "commands": [
                 "workbench.files.action.focusFilesExplorer"
             ]
         },
         {
-            "before": ["leader", "t"],
+            "before": [
+                "leader",
+                "t"
+            ],
             "commands": [
                 "workbench.action.terminal.toggleTerminal"
             ]
-        }
+        },
+        {
+            "before": [
+                "c",
+                "c"
+            ],
+            "commands": [
+                "editor.action.addCommentLine"
+            ]
+        },
+        {
+            "before": [
+                "c",
+                "u"
+            ],
+            "commands": [
+                "editor.action.removeCommentLine"
+            ]
+        },
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "c", "c"],
-            "commands": ["editor.action.addCommentLine"]
+            "before": [
+                "c",
+                "c"
+            ],
+            "commands": [
+                "editor.action.addCommentLine"
+            ]
         },
         {
-            "before": ["<leader>", "c", "u"],
-            "commands": ["editor.action.removeCommentLine"]
+            "before": [
+                "c",
+                "u"
+            ],
+            "commands": [
+                "editor.action.removeCommentLine"
+            ]
         },
         {
             "before": [
@@ -393,7 +493,6 @@
     ],
     // ## Extension: scrolloff
     "scrolloff.scrolloff": 7,
-
     // ## Extension: errorLens
     "errorLens.statusBarColorsEnabled": true,
     "errorLens.margin": "6ch",
@@ -415,5 +514,10 @@
     "vim.debug.loggingLevelForAlert": "warn",
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "editor.guides.bracketPairs": true,
-    "workbench.colorTheme": "Dracula Soft"
+    "workbench.colorTheme": "Dracula Soft",
+    "breadcrumbs.enabled": false,
+    "editor.renderWhitespace": "all",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
 }
