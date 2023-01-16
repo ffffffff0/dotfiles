@@ -98,8 +98,8 @@ nmap <Leader>u <C-U>
 " 向上翻半屏
 nmap <Leader>n <C-D>
 " 快速移动到行首，行尾
-map <Leader>L ^
-map <Leader>H $
+map <Leader>H ^
+map <Leader>L $
 " 设置快捷键遍历各个分割窗口
 nnoremap <Leader>gg <C-W><C-W>
 " 向左
