@@ -1,5 +1,3 @@
-"set color scheme
-colorscheme monokai
 " 省略警告
 let g:coc_disable_startup_warning = 1
 " 让setting变更立即生效
@@ -36,6 +34,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'bagrat/vim-buffet'
 Plug 'andymass/vim-matchup'
 call plug#end()
+"set color scheme
+colorscheme monokai
 " jsonc settings 让json 的注释不报错
 autocmd BufRead,BufNewFile *.json set filetype=jsonc
 " 同步剪切板
@@ -54,7 +54,6 @@ au FileType scheme,racket,sh,lisp,clojure,lfe,elixir,eelixir,ruby,eruby,coffee,s
 " imap <leader>v <esc>"+p
 " nmap <leader>v "+p
 " vmap <leader>v "+p
-
 set backspace=2              " 设置退格键可用
 set autoindent               " 自动对齐
 set ai!                      " 设置自动缩进
@@ -97,10 +96,10 @@ set scrolloff=7
 " 向下翻半屏
 nmap <Leader>u <C-U>
 " 向上翻半屏
-nmap <Leader>d <C-D>
+nmap <Leader>n <C-D>
 " 快速移动到行首，行尾
-map <Leader>1 ^
-map <Leader>2 $
+map <Leader>L ^
+map <Leader>H $
 " 设置快捷键遍历各个分割窗口
 nnoremap <Leader>gg <C-W><C-W>
 " 向左
