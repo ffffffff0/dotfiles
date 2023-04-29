@@ -233,20 +233,17 @@
     // 隐藏哪些文件
     "files.exclude": {
         ".idea": true,
+        ".mypy_cache/": true,
         ".vscode": true,
         "**/__pycache__": true,
-        "**/*.pyc": true,
-        "node_modules/": true,
-        "templates_module/": true,
-        "**/.project": true,
-        ".mypy_cache/": true,
         "**/.classpath": true,
         "**/.coverage": true,
         "**/.factorypath": true,
-        "**/.settings": true
+        "**/.history": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/*.pyc": true
     },
-    "files.autoSave": "onWindowChange",
-    // ## search
     // 显示检索到的位置的行号
     "search.showLineNumbers": true,
     // 是否智能大小写
@@ -276,6 +273,24 @@
             ],
             "after": [
                 "<C-D>"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "i"
+            ],
+            "after": [
+                "<C-i>"
+            ]
+        },
+        {
+            "before": [
+                "leader",
+                "o"
+            ],
+            "after": [
+                "<C-o>"
             ]
         },
         {
@@ -493,8 +508,6 @@
             ]
         }
     ],
-    // ## Extension: scrolloff
-    "scrolloff.scrolloff": 7,
     // ## Extension: errorLens
     "errorLens.statusBarColorsEnabled": true,
     "errorLens.margin": "6ch",
@@ -509,10 +522,10 @@
     // not show in real
     "errorLens.onSave": true,
     "vim.useSystemClipboard": true,
-    "window.zoomLevel": 0.5,
     "vim.easymotion": true,
     "vim.leader": ";",
     "vim.incsearch": true,
+    "window.zoomLevel": 0.5,
     "vim.debug.loggingLevelForAlert": "warn",
     "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
     "editor.guides.bracketPairs": true,
@@ -522,8 +535,11 @@
     "[javascript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    "vim.autoSwitchInputMethod.enable": true,
-    "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.US",
-    "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/local/bin/im-select",
-    "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}"
+    "vsicons.dontShowNewVersionMessage": true,
+    "redhat.telemetry.enabled": true,
+    "workbench.startupEditor": "none",
+    "go.toolsManagement.autoUpdate": true,
+    "[python]": {
+        "editor.formatOnType": true
+    }
 }
