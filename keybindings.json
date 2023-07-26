@@ -8,12 +8,6 @@
     },
     // 搜索后将焦点放在目录树
     {
-        "key": "Escape",
-        "command": "workbench.view.explorer",
-        "when": "searchViewletVisible"
-    },
-    // 打开和隐藏终端
-    {
         "key": "ctrl+;",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
@@ -29,6 +23,13 @@
         "command": "editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
+
+    // 焦点放在编辑页面
+    {
+        "key": "ctrl+'",
+        "command": "workbench.view.explorer",
+        "when": "searchViewletVisible"
+    }
     // 显示文件目录
     // {
     //     "key": "ctrl+space",
@@ -83,5 +84,32 @@
         "key": "p",
         "command": "filesExplorer.paste",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+    },
+    {
+        "key": "cmd+k e",
+        "command": "workbench.files.action.focusOpenEditorsView",
+        "when": "workbench.explorer.openEditorsView.active"
+    },
+    {
+        "key": "cmd+k e",
+        "command": "-workbench.files.action.focusOpenEditorsView",
+        "when": "workbench.explorer.openEditorsView.active"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "workbench.action.focusNextPart"
+    },
+    {
+        "key": "f6",
+        "command": "-workbench.action.focusNextPart"
+    },
+    {
+        "key": "shift+cmd+f",
+        "command": "-workbench.action.findInFiles"
+    },
+    {
+        "key": "shift+cmd+e",
+        "command": "-workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
     }
 ]
