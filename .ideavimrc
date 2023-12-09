@@ -2,7 +2,7 @@
 set keep-english-in-normal-and-restore-in-insert
 " 相对行号
 set nu
-set rnu
+" set rnu
 " clipboard
 set clipboard=unnamed
 " 设置leader键
@@ -37,6 +37,8 @@ nnoremap <Leader>w :<C-u>action CloseAllEditorsButActive<CR>
 nnoremap <Leader>\ <C-w>v
 " 水平分割屏幕
 nnoremap <Leader>- <C-w>s
+" 回到上一个位置
+nnoremap <Leader>o :action Back<CR>
 " 新建文件
 nnoremap <Leader>n :action NewFile<CR>
 " 查找 action
@@ -69,8 +71,8 @@ nnoremap q :<C-u>action ShowIntentionActions<CR>
 nnoremap cc :<C-u>action CommentByLineComment<CR>
 vnoremap cc :<C-u>action CommentByLineComment<CR>
 " 在 标签页 间切换
-nnoremap gh gT
-nnoremap gl gt
+nnoremap <Leader>l gt
+nnoremap <Leader>h gT
 " 打断点
 nnoremap tb :action ToggleLineBreakpoint<cr>
 " bookmark
@@ -109,17 +111,12 @@ nmap <Leader>u <C-U>
 " 向上翻半屏
 nmap <Leader>d <C-D>
 " 快速移动到行首，行尾
-map <Leader>1 ^
-map <Leader>2 $
-" 向左
-nnoremap <leader>h <C-W><C-H>
-" 向右
-nnoremap <leader>l <C-W><C-L>
-" 向上
-nnoremap <Leader>k <C-W><C-K>
-" 向下
-nnoremap <Leader>j <C-W><C-J>
+" map <Leader>1 ^
+" map <Leader>2 $
+noremap H ^
+noremap L $
 " 水平分割
 nmap <Leader>s :Sex<CR>
 " 竖直分割
 nmap <Leader>v :Vex<CR>
+
