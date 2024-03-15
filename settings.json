@@ -592,9 +592,17 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  "leetcode.endpoint": "leetcode-cn",
+  "leetcode.workspaceFolder": "/Users/wen_xu/myScript/leetcode",
+  "leetcode.hint.configWebviewMarkdown": false,
+  "leetcode.hint.commentDescription": false,
+  "leetcode.defaultLanguage": "java",
+  "leetcode.hint.commandShortcut": false,
   "cmake.showOptionsMovedNotification": false,
   "go.formatTool": "gofmt",
-  "workbench.layoutControl.enabled": false,
+  "workbench.editor.showTabs": "single",
   "workbench.editor.editorActionsLocation": "hidden",
   "window.commandCenter": false,
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.location": "top",
 }
