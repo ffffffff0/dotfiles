@@ -1,608 +1,666 @@
 {
-  //#################################################################################
-  //#################################################################################
-  //#################################################################################
-  // plugin
-  // - vim
-  // - Dracula official
-  // - Error lens
-  // - Git Graph
-  // - Scrolloff
-  // - ayasEditor for racket
-  // - magic racket
-  //############################## vim ################################################
-  // #############################################- vim-surround 用法
-  //   press cs"' inside
-  //   "Hello world!" --> 'Hello world!'
-  //   press cs'<q> to change it to
-  //   'Hello world!' --> <q>Hello world!</q>
-  //   press cst" to get
-  //   <q>Hello world!</q> --> "Hello world!"
-  //   press ds".
-  //   "Hello world" --> Hello world!
-  //   press ysiw] (iw is a text object).
-  //   Hello world! --> [Hello] world!
-  //   press cs]{
-  //   [Hello] world! --> { Hello } world!
-  //   press yssb or yss).
-  //   { Hello } world! --> ({ Hello } world!)
-  //   Revert to the original text: ds{ds)
-  //   ({ Hello } world!) --> Hello world!
-  //   Emphasize hello: ysiw<em>
-  //   Hello world! --> <em>Hello</em> world!
-  // ########################################################### leader 快捷键
-  //   ;f               快速打开文件
-  //   gd              跳转到定义处
-  //   ;d               down 向下翻页
-  //   ;u               up 向上翻页
-  //   ;w               保存文件
-  //   ;q               退出文件
-  //   H                到行首
-  //   L                到行尾
-  //   ;h               跳转到上一个文件
-  //   ;l               跳转到下一个文件
-  //   ;gi              跳转到实现处
-  //   ;rn              重命名变量
-  //   ;cc              注释
-  //   ;cu              取消注释
-  //   ;s               跳转symbol
-  //   ;<space>         删除行尾空格
-  //   ;p               显示命令窗口
-  //   ;a               跳转到文件夹目录, l 返回当前光标所在文件编辑
-  //   ;t               打开终端, ctrl+; 隐藏终端
-  //   ;o               跳转到上一个位置
-  //   ;i               跳转到下一个位置
-  // ########################################################### vim-easymotion
-  //   ;;s<char>        全局搜索字符
-  //   ;;f<char>        搜索该字符之后的字符
-  //   ;;F<char>        搜索该字符之前的字符
-  //   ;;w              搜索光标所在字符之后的单词开头
-  //   ;;b              搜索光标所在字符之前的单词开头
-  //   ;;j              搜索光标所在行之后的每行开头
-  //   ;;k              搜索光标所在行之前的每行开头
-  //   ;;/<n-char><cr>  搜索n个字符所在位置
-  //   ;;;j             跳转到任何地方
-  // ########################################################### vscode vim命令
-  //   gb               增加一个光标到下一个相同的词，可以同时修改
-  //   gq               多行选择后可以格自动换行文本块，好像没啥用
-  //   af               选中一行文本后，它可以自动选取更大范围内容
-  //   gh               显示光标所在位置的 定义、信息
-  // ########################################################### vim 常规命令
-  // ################### 移动
-  //   zt               将当前行移到屏幕顶部
-  //   zz               将当前行移到屏幕中部
-  //   zb               将当前行移到屏幕底部
-  //   cw               替换单词
-  //   dw               删除单词
-  //   H                到屏幕的首行
-  //   L                到屏幕尾行
-  //   M                到屏幕中间
-  // ################### 编辑
-  //   i                在当前光标位置插入字符
-  //   I                在当前行首位置插入字符
-  //   o                在当前行往下插入新的一空行
-  //   O                在当前行往上插入新的一空行
-  //   a                在当前光标后追加字符
-  //   A                在当前行尾追加字符
-  //   r                替换当前字符
-  //   R                替换当前光标的字符直到退出插入模式（按ESC）
-  //   c                删除选中文本并进入插入模式
-  //   C                删除至行尾并进入插入模式
-  //   s                删除当前字符并进入插入模式
-  //   S                删除当前行并进入插入模式
-  // ################### 复制
-  //   yw               拷贝当前的一个单词
-  //   y0               拷贝的范围是当前光标处到行首
-  //   y$               拷贝的范围是当前光标处到行尾
-  //   yy               拷贝当前行
-  //   Y                同上
-  //   Nyy              从当前行开始拷贝 N 行
-  //   yf+<char>        复制从当前字符到指定字符
-  //   yG               拷贝当前行到文件尾
-  //   ygg              拷贝当前行到文件头
-  //   ggyG             复制整个文件
-  //   :t5              拷贝当前行到第5行的下一行
-  //   :t.              拷贝当前行到光标下一行，相当于 `yp` 或者 `yyp`
-  //   :t$              拷贝当前行到文件最后一行
-  //   :50,100move200   移动50行到100行的内容到第200行后面
-  // #################### 删除
-  //   X                删除光标所在前一个字符
-  //   dw               删除一个单词
-  //   de               删除到本单词末尾
-  //   dE               删除到本单词末尾包括标点在内
-  //   db               删除到前一个单词
-  //   dB               删除到前一个单词包括标点在内
-  //   d0               删除光标位置到本行开头
-  //   D                删除从当前光标到行尾
-  //   df+<char>        删除从当前字符到指定字符
-  //   di(/di'/di"      删除括号或者引号中的内容
-  //   da(/da'/da"      包括括号或者引号一起删除
-  //   c$               修改从当前字符到行尾
-  //   cc               修改整行
-  //   C                修改当前光标至行尾
-  //   cf+<char>        修改从当前字符到指定字符
-  //   ci(/ci'/ci"      修改括号或者引号中的内容
-  //   ca(/ca'/ca"      包括括号或者引号一起修改
-  // ################### 范围命令
-  //   :d/:.d	          当前行
-  //   :1d	          第一行
-  //   :$d	          最后一行
-  //   :1,$d/:%d	      所有行
-  //   :,5d	          当前行至第 5 行
-  //   :,+3d	          当前行及接下来的 3 行
-  //   :1,+3d	          第一行至当前行再加 3 行
-  //   :,-3d	          当前行及向上的 3 行
-  // ################### 搜索命令
-  //   *                向后查找光标当前所在单词
-  //   #                向前查找光标当前所在单词
-  //   f<X>             当前行内向行尾方向查找并定位到字符 X
-  //   t<X>             当前行内向行尾方向查找并定位到字符 X 之前
-  // ################### 替换命令
-  //   [range]s/{pattern}/{string}/[flags]
-  //   :1,10s/from/to/g  表示在第1到第10行（包含第1，第10行）之间搜索替换
-  //   :10s/from/to/g    表示只在第10行搜索替换
-  //   :%s/from/to/g     表示在所有行中搜索替换
-  //   :1,$s/from/to/g   同上
-  // ######### flag
-  //   c confirm，每次替换前询问
-  //   e error，不显示错误
-  //   g globle，不询问，整行替换。如果不加 g 选项，则只替换每行的第一个匹配到的字符串
-  //   i ignore，忽略大小写
-  // ################### 标记
-  //   a-z                用户设置，仅对当前的一个文件生效，也就意味着只可以在当前文件中跳转
-  //   A-Z                用户设置，全局标记，可以作用于不同文件。大写标注也称为「文件标注」。跳转时有可能会切换到另一个缓冲区
-  //   0-9                由 viminfo 记录，0 代表 viminfo 最后一次被写入的位置。实际使用中，就代表 Vim 进程最后一次结束的位置。1 代表 Vim 进程倒数第二次结束的位置，以此类推
-  //   ma                 标记当前问题为 a 标记, 以此类推
-  //   '/g'+<mark>        标记之间跳转
-  // ################### 寄存器
-  // 寄存器主要用于存储文本内容，其为复制粘贴功能提供辅助。寄存器的访问和操作使用冒号 " 作为前缀
-  //  "ayy                表示复制当前行到 a 寄存器
-  //  "ap                 表示粘贴寄存器中的内容
-  // #################### 宏
-  //  q{register}         开始进入录制
-  //  q                   结束录制
-  //  @{register}         便会执行宏中的操作
-  //  5@{register}        执行宏操作5次
-  // ##################### 输入命令
-  //  :vsp                 竖直分屏
-  //  :sp                  横向分屏
-  //#################################################################################
-  //#################################################################################
-  //#################################################################################
-  "editor.fontSize": 15.5,
-  "editor.fontFamily": "FiraCode-Retina, Fira Code",
-  "editor.fontLigatures": true,
-  "editor.fontWeight": "500",
-  "workbench.editor.enablePreview": false,
-  // 开启花括号颜色
-  "editor.bracketPairColorization.enabled": true,
-  // 禁止编辑区滚动到最后一行下面 prevent the editor from scrolling beyond the last line.
-  "editor.scrollBeyondLastLine": false,
-  // 查找框展示导致鼠标能往上滚动一行
-  "editor.find.addExtraSpaceOnTop": false,
-  // 显示 120 字符竖线 the 120 characters line
-  "editor.rulers": [
-    120
-  ],
-  // 关闭小地图 disable the minimap
-  "editor.minimap.enabled": false,
-  // 相对行号
-  // "editor.lineNumbers": "relative",
-  // 设置注释的颜色 以及斜体展示 set comment italic
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
+    //#################################################################################
+    //#################################################################################
+    //#################################################################################
+    // plugin
+    // - vim
+    // - Dracula official
+    // - Error lens
+    // - Git Graph
+    // - Scrolloff
+    // - ayasEditor for racket
+    // - magic racket
+    //############################## vim ################################################
+    // #############################################- vim-surround 用法
+    //   press cs"' inside
+    //   "Hello world!" --> 'Hello world!'
+    //   press cs'<q> to change it to
+    //   'Hello world!' --> <q>Hello world!</q>
+    //   press cst" to get
+    //   <q>Hello world!</q> --> "Hello world!"
+    //   press ds".
+    //   "Hello world" --> Hello world!
+    //   press ysiw] (iw is a text object).
+    //   Hello world! --> [Hello] world!
+    //   press cs]{
+    //   [Hello] world! --> { Hello } world!
+    //   press yssb or yss).
+    //   { Hello } world! --> ({ Hello } world!)
+    //   Revert to the original text: ds{ds)
+    //   ({ Hello } world!) --> Hello world!
+    //   Emphasize hello: ysiw<em>
+    //   Hello world! --> <em>Hello</em> world!
+    // ########################################################### leader 快捷键
+    //   ;f               快速打开文件
+    //   gd              跳转到定义处
+    //   ;d               down 向下翻页
+    //   ;u               up 向上翻页
+    //   ;w               保存文件
+    //   ;q               退出文件
+    //   H                到行首
+    //   L                到行尾
+    //   ;h               跳转到上一个文件
+    //   ;l               跳转到下一个文件
+    //   ;gi              跳转到实现处
+    //   ;rn              重命名变量
+    //   ;cc              注释
+    //   ;cu              取消注释
+    //   ;s               跳转symbol
+    //   ;<space>         删除行尾空格
+    //   ;p               显示命令窗口
+    //   ;a               跳转到文件夹目录, l 返回当前光标所在文件编辑
+    //   ;t               打开终端, ctrl+; 隐藏终端
+    //   ;o               跳转到上一个位置
+    //   ;i               跳转到下一个位置
+    // ########################################################### vim-easymotion
+    //   ;;s<char>        全局搜索字符
+    //   ;;f<char>        搜索该字符之后的字符
+    //   ;;F<char>        搜索该字符之前的字符
+    //   ;;w              搜索光标所在字符之后的单词开头
+    //   ;;b              搜索光标所在字符之前的单词开头
+    //   ;;j              搜索光标所在行之后的每行开头
+    //   ;;k              搜索光标所在行之前的每行开头
+    //   ;;/<n-char><cr>  搜索n个字符所在位置
+    //   ;;;j             跳转到任何地方
+    // ########################################################### vscode vim命令
+    //   gb               增加一个光标到下一个相同的词，可以同时修改
+    //   gq               多行选择后可以格自动换行文本块，好像没啥用
+    //   af               选中一行文本后，它可以自动选取更大范围内容
+    //   gh               显示光标所在位置的 定义、信息
+    // ########################################################### vim 常规命令
+    // ################### 移动
+    //   zt               将当前行移到屏幕顶部
+    //   zz               将当前行移到屏幕中部
+    //   zb               将当前行移到屏幕底部
+    //   cw               替换单词
+    //   dw               删除单词
+    //   H                到屏幕的首行
+    //   L                到屏幕尾行
+    //   M                到屏幕中间
+    // ################### 编辑
+    //   i                在当前光标位置插入字符
+    //   I                在当前行首位置插入字符
+    //   o                在当前行往下插入新的一空行
+    //   O                在当前行往上插入新的一空行
+    //   a                在当前光标后追加字符
+    //   A                在当前行尾追加字符
+    //   r                替换当前字符
+    //   R                替换当前光标的字符直到退出插入模式（按ESC）
+    //   c                删除选中文本并进入插入模式
+    //   C                删除至行尾并进入插入模式
+    //   s                删除当前字符并进入插入模式
+    //   S                删除当前行并进入插入模式
+    // ################### 复制
+    //   yw               拷贝当前的一个单词
+    //   y0               拷贝的范围是当前光标处到行首
+    //   y$               拷贝的范围是当前光标处到行尾
+    //   yy               拷贝当前行
+    //   Y                同上
+    //   Nyy              从当前行开始拷贝 N 行
+    //   yf+<char>        复制从当前字符到指定字符
+    //   yG               拷贝当前行到文件尾
+    //   ygg              拷贝当前行到文件头
+    //   ggyG             复制整个文件
+    //   :t5              拷贝当前行到第5行的下一行
+    //   :t.              拷贝当前行到光标下一行，相当于 `yp` 或者 `yyp`
+    //   :t$              拷贝当前行到文件最后一行
+    //   :50,100move200   移动50行到100行的内容到第200行后面
+    // #################### 删除
+    //   X                删除光标所在前一个字符
+    //   dw               删除一个单词
+    //   de               删除到本单词末尾
+    //   dE               删除到本单词末尾包括标点在内
+    //   db               删除到前一个单词
+    //   dB               删除到前一个单词包括标点在内
+    //   d0               删除光标位置到本行开头
+    //   D                删除从当前光标到行尾
+    //   df+<char>        删除从当前字符到指定字符
+    //   di(/di'/di"      删除括号或者引号中的内容
+    //   da(/da'/da"      包括括号或者引号一起删除
+    //   c$               修改从当前字符到行尾
+    //   cc               修改整行
+    //   C                修改当前光标至行尾
+    //   cf+<char>        修改从当前字符到指定字符
+    //   ci(/ci'/ci"      修改括号或者引号中的内容
+    //   ca(/ca'/ca"      包括括号或者引号一起修改
+    // ################### 范围命令
+    //   :d/:.d	          当前行
+    //   :1d	          第一行
+    //   :$d	          最后一行
+    //   :1,$d/:%d	      所有行
+    //   :,5d	          当前行至第 5 行
+    //   :,+3d	          当前行及接下来的 3 行
+    //   :1,+3d	          第一行至当前行再加 3 行
+    //   :,-3d	          当前行及向上的 3 行
+    // ################### 搜索命令
+    //   *                向后查找光标当前所在单词
+    //   #                向前查找光标当前所在单词
+    //   f<X>             当前行内向行尾方向查找并定位到字符 X
+    //   t<X>             当前行内向行尾方向查找并定位到字符 X 之前
+    // ################### 替换命令
+    //   [range]s/{pattern}/{string}/[flags]
+    //   :1,10s/from/to/g  表示在第1到第10行（包含第1，第10行）之间搜索替换
+    //   :10s/from/to/g    表示只在第10行搜索替换
+    //   :%s/from/to/g     表示在所有行中搜索替换
+    //   :1,$s/from/to/g   同上
+    // ######### flag
+    //   c confirm，每次替换前询问
+    //   e error，不显示错误
+    //   g globle，不询问，整行替换。如果不加 g 选项，则只替换每行的第一个匹配到的字符串
+    //   i ignore，忽略大小写
+    // ################### 标记
+    //   a-z                用户设置，仅对当前的一个文件生效，也就意味着只可以在当前文件中跳转
+    //   A-Z                用户设置，全局标记，可以作用于不同文件。大写标注也称为「文件标注」。跳转时有可能会切换到另一个缓冲区
+    //   0-9                由 viminfo 记录，0 代表 viminfo 最后一次被写入的位置。实际使用中，就代表 Vim 进程最后一次结束的位置。1 代表 Vim 进程倒数第二次结束的位置，以此类推
+    //   ma                 标记当前问题为 a 标记, 以此类推
+    //   '/g'+<mark>        标记之间跳转
+    // ################### 寄存器
+    // 寄存器主要用于存储文本内容，其为复制粘贴功能提供辅助。寄存器的访问和操作使用冒号 " 作为前缀
+    //  "ayy                表示复制当前行到 a 寄存器
+    //  "ap                 表示粘贴寄存器中的内容
+    // #################### 宏
+    //  q{register}         开始进入录制
+    //  q                   结束录制
+    //  @{register}         便会执行宏中的操作
+    //  5@{register}        执行宏操作5次
+    // ##################### 输入命令
+    //  :vsp                 竖直分屏
+    //  :sp                  横向分屏
+    //#################################################################################
+    //#################################################################################
+    //#################################################################################
+    "editor.fontSize": 14.5,
+    "editor.fontFamily": "FiraCode-Retina, Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "500",
+    "workbench.editor.enablePreview": false,
+    // 开启花括号颜色
+    "editor.bracketPairColorization.enabled": true,
+    // 禁止编辑区滚动到最后一行下面 prevent the editor from scrolling beyond the last line.
+    "editor.scrollBeyondLastLine": false,
+    // 查找框展示导致鼠标能往上滚动一行
+    "editor.find.addExtraSpaceOnTop": false,
+    // 显示 120 字符竖线 the 120 characters line
+    "editor.rulers": [
+      120
+    ],
+    // 关闭小地图 disable the minimap
+    "editor.minimap.enabled": false,
+    // 相对行号
+    // "editor.lineNumbers": "relative",
+    // 设置注释的颜色 以及斜体展示 set comment italic
+    "editor.tokenColorCustomizations": {
+      "[*Light*]": {
+        "textMateRules": [
+          {
+            "scope": "ref.matchtext",
+            "settings": {
+              "foreground": "#000"
+            }
+          }
+        ]
+      },
+      "[*Dark*]": {
+        "textMateRules": [
+          {
+            "scope": "ref.matchtext",
+            "settings": {
+              "foreground": "#fff"
+            }
+          }
+        ]
+      },
+      "textMateRules": [
+        {
+          "scope": [
+            "comment",
+            "comment.line",
+            "comment.block",
+            "comment.block.documentation",
+            "string.quoted.docstring.multi.python",
+            "punctuation.definition.comment",
+            "punctuation.definition.comment.begin.documentation",
+            "punctuation.definition.comment.end.documentation"
+          ],
+          "settings": {
+            "fontStyle": "italic",
+            "foreground": "#808080"
+          }
+        }
+      ]
+    },
+    // 提示相关 suggestion
+    // "editor.suggestSelection": "recentlyUsedByPrefix",
+    "editor.suggestSelection": "first",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": true,
+      "strings": true
+    },
+    "editor.inlineSuggest.enabled": true,
+    // 编辑区域配色 color like jetbrains
+    "workbench.colorCustomizations": {
+      // 设置光标颜色
+      "editorCursor.foreground": "#e9e6e6",
+      // 设置状态栏的颜色
+      "statusBar.background": "#bb088e",
+      //设置用户选中代码段的颜色
+      "editor.selectionBackground": "#7f84a2d2",
+      "editor.selectionHighlightBackground": "#7f84a2d2"
+      //设置活动tab窗口颜色
+      // "tab.activeBackground": "#bb088e"
+    },
+    // 高亮显示被修改的tab
+    "workbench.editor.highlightModifiedTabs": true,
+    // 隐藏哪些文件
+    "files.exclude": {
+      ".idea": true,
+      ".mypy_cache/": true,
+      ".vscode": true,
+      "**/__pycache__": true,
+      "**/.classpath": true,
+      "**/.coverage": true,
+      "**/.factorypath": true,
+      "**/.history": true,
+      "**/.project": true,
+      "**/.settings": true,
+      "**/*.pyc": true
+    },
+    // 显示检索到的位置的行号
+    "search.showLineNumbers": true,
+    // 是否智能大小写
+    "search.smartCase": true,
+    // ## Extension: vim
+    "vim.normalModeKeyBindingsNonRecursive": [
       {
-        "scope": [
-          "comment",
-          "comment.line",
-          "comment.block",
-          "comment.block.documentation",
-          "string.quoted.docstring.multi.python",
-          "punctuation.definition.comment",
-          "punctuation.definition.comment.begin.documentation",
-          "punctuation.definition.comment.end.documentation"
+        "before": [
+          "L"
         ],
-        "settings": {
-          "fontStyle": "italic",
-          "foreground": "#808080"
-        }
+        "after": [
+          "$"
+        ]
+      },
+      {
+        "before": [
+          "H"
+        ],
+        "after": [
+          "^"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "d"
+        ],
+        "after": [
+          "<C-D>"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "i"
+        ],
+        "after": [
+          "<C-i>"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "o"
+        ],
+        "after": [
+          "<C-o>"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "u"
+        ],
+        "after": [
+          "<C-U>"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "l"
+        ],
+        "commands": [
+          "workbench.action.nextEditor"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "h"
+        ],
+        "commands": [
+          "workbench.action.previousEditor"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "q"
+        ],
+        "commands": [
+          {
+            "command": "workbench.action.files.save",
+            "args": []
+          },
+          {
+            "command": "workbench.action.closeActiveEditor",
+            "args": []
+          }
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "w"
+        ],
+        "commands": [
+          {
+            "command": "workbench.action.files.save",
+            "args": []
+          }
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "g",
+          "i"
+        ],
+        "commands": [
+          {
+            "command": "editor.action.goToImplementation"
+          }
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "c",
+          "c"
+        ],
+        "commands": [
+          "editor.action.addCommentLine"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "c",
+          "u"
+        ],
+        "commands": [
+          "editor.action.removeCommentLine"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "r",
+          "n"
+        ],
+        "commands": [
+          "editor.action.rename"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "space"
+        ],
+        "commands": [
+          "editor.action.trimTrailingWhitespace"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "p"
+        ],
+        "commands": [
+          "workbench.action.showCommands"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "f"
+        ],
+        "commands": [
+          "workbench.action.quickOpen"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "s"
+        ],
+        "commands": [
+          "workbench.action.gotoSymbol"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "/"
+        ],
+        "commands": [
+          ":nohl"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "a"
+        ],
+        "commands": [
+          "workbench.files.action.focusFilesExplorer"
+        ]
+      },
+      {
+        "before": [
+          "leader",
+          "t"
+        ],
+        "commands": [
+          "workbench.action.terminal.toggleTerminal"
+        ]
+      },
+      {
+        "before": [
+          "c",
+          "c"
+        ],
+        "commands": [
+          "editor.action.addCommentLine"
+        ]
+      },
+      {
+        "before": [
+          "c",
+          "u"
+        ],
+        "commands": [
+          "editor.action.removeCommentLine"
+        ]
       }
-    ]
-  },
-  // 提示相关 suggestion
-  // "editor.suggestSelection": "recentlyUsedByPrefix",
-  "editor.suggestSelection": "first",
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": true,
-    "strings": true
-  },
-  "editor.inlineSuggest.enabled": true,
-  "workbench.iconTheme": "vscode-icons",
-  // 编辑区域配色 color like jetbrains
-  "workbench.colorCustomizations": {
-    // 设置光标颜色
-    "editorCursor.foreground": "#e9e6e6",
-    // 设置状态栏的颜色
-    "statusBar.background": "#bb088e",
-    //设置用户选中代码段的颜色
-    "editor.selectionBackground": "#7f84a2d2",
-    "editor.selectionHighlightBackground": "#7f84a2d2"
-    //设置活动tab窗口颜色
-    // "tab.activeBackground": "#bb088e"
-  },
-  // 高亮显示被修改的tab
-  "workbench.editor.highlightModifiedTabs": true,
-  // 隐藏哪些文件
-  "files.exclude": {
-    ".idea": true,
-    ".mypy_cache/": true,
-    ".vscode": true,
-    "**/__pycache__": true,
-    "**/.classpath": true,
-    "**/.coverage": true,
-    "**/.factorypath": true,
-    "**/.history": true,
-    "**/.project": true,
-    "**/.settings": true,
-    "**/*.pyc": true
-  },
-  // 显示检索到的位置的行号
-  "search.showLineNumbers": true,
-  // 是否智能大小写
-  "search.smartCase": true,
-  // ## Extension: vim
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "L"
-      ],
-      "after": [
-        "$"
-      ]
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+      {
+        "before": [
+          "c",
+          "c"
+        ],
+        "commands": [
+          "editor.action.addCommentLine"
+        ]
+      },
+      {
+        "before": [
+          "c",
+          "u"
+        ],
+        "commands": [
+          "editor.action.removeCommentLine"
+        ]
+      },
+      {
+        "before": [
+          ">"
+        ],
+        "commands": [
+          "editor.action.indentLines"
+        ]
+      },
+      {
+        "before": [
+          "<"
+        ],
+        "commands": [
+          "editor.action.outdentLines"
+        ]
+      }
+    ],
+    // not show in real
+    "vim.useSystemClipboard": true,
+    "vim.easymotion": true,
+    "vim.leader": ";",
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "window.zoomLevel": 0.5,
+    "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+    "editor.guides.bracketPairs": true,
+    "breadcrumbs.enabled": false,
+    "editor.renderWhitespace": "all",
+    "[javascript]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
     },
-    {
-      "before": [
-        "H"
-      ],
-      "after": [
-        "^"
-      ]
+    "workbench.startupEditor": "none",
+    "[python]": {
+      "editor.formatOnType": true
     },
-    {
-      "before": [
-        "leader",
-        "d"
-      ],
-      "after": [
-        "<C-D>"
-      ]
+    "cSpell.userWords": [
+      "APIKEY",
+      "apikeys",
+      "bclient",
+      "bigtable",
+      "Binlog",
+      "blpop",
+      "cdef",
+      "cjson",
+      "cpid",
+      "croner",
+      "dbwrapper",
+      "deadqueue",
+      "epas",
+      "esprovisioning",
+      "excalidraw",
+      "EXPIREAT",
+      "fdebug",
+      "finfo",
+      "Healthz",
+      "hget",
+      "HMGET",
+      "hset",
+      "httpclient",
+      "iife",
+      "Indentifier",
+      "keepalive",
+      "KEEPTTL",
+      "llen",
+      "lrange",
+      "lrucache",
+      "ltrim",
+      "mgmt",
+      "mxdr",
+      "notificaion",
+      "offboard",
+      "openapi",
+      "opentelemetry",
+      "paren",
+      "parens",
+      "plusplus",
+      "ppid",
+      "rcall",
+      "rpoplpush",
+      "rpush",
+      "SETCTOKEN",
+      "SIEM",
+      "trendmicro",
+      "Upstreams",
+      "useraccount",
+      "VSAPI",
+      "xinfo",
+      "xreadgroup",
+      "zadd",
+      "zcard",
+      "zrange"
+    ],
+    "workbench.editorAssociations": {
+      "*.pb": "default"
     },
-    {
-      "before": [
-        "leader",
-        "i"
-      ],
-      "after": [
-        "<C-i>"
-      ]
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "[jsonc]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
     },
-    {
-      "before": [
-        "leader",
-        "o"
-      ],
-      "after": [
-        "<C-o>"
-      ]
+    "workbench.editor.showTabs": "single",
+    "workbench.editor.editorActionsLocation": "hidden",
+    "window.commandCenter": false,
+    "workbench.sideBar.location": "left",
+    "workbench.activityBar.location": "top",
+    "files.associations": {
+      ".env*": "dotenv"
     },
-    {
-      "before": [
-        "leader",
-        "u"
-      ],
-      "after": [
-        "<C-U>"
-      ]
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    {
-      "before": [
-        "leader",
-        "l"
-      ],
-      "commands": [
-        "workbench.action.nextEditor"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "h"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "q"
-      ],
-      "commands": [
+    "terminal.integrated.tabs.location": "left",
+    "workbench.iconTheme": "vscode-icons",
+    "eslint.enable": true,
+    "eslint.format.enable": true,
+    "eslint.run": "onSave",
+    "eslint.workingDirectories": [
         {
-          "command": "workbench.action.files.save",
-          "args": []
-        },
-        {
-          "command": "workbench.action.closeActiveEditor",
-          "args": []
+          "mode": "auto"
         }
-      ]
+    ],
+    "github.copilot.enable": {
+      "*": false,
+      "plaintext": false,
+      "markdown": false,
+      "scminput": false,
+      "lua": true,
+      "go": false
     },
-    {
-      "before": [
-        "leader",
-        "w"
-      ],
-      "commands": [
-        {
-          "command": "workbench.action.files.save",
-          "args": []
-        }
-      ]
+    "[vue]": {
+      "editor.defaultFormatter": "Vue.volar"
     },
-    {
-      "before": [
-        "leader",
-        "g",
-        "i"
-      ],
-      "commands": [
-        {
-          "command": "editor.action.goToImplementation"
-        }
-      ]
+    "dotenv.enableAutocloaking": false,
+    "vs-kubernetes": {
+      "vscode-kubernetes.minikube-path-mac": "/Users/wen_xu/.vs-kubernetes/tools/minikube/darwin-arm64/minikube"
     },
-    {
-      "before": [
-        "leader",
-        "c",
-        "c"
-      ],
-      "commands": [
-        "editor.action.addCommentLine"
-      ]
+    "workbench.colorTheme": "Dracula Refined",
+    "[lua]": {
+      "editor.defaultFormatter": "yinfei.luahelper"
     },
-    {
-      "before": [
-        "leader",
-        "c",
-        "u"
-      ],
-      "commands": [
-        "editor.action.removeCommentLine"
-      ]
+    "go.toolsManagement.autoUpdate": true,
+    "excalidraw.language": "en",
+    "github.copilot.advanced": {
+      "authProvider": "github"
     },
-    {
-      "before": [
-        "leader",
-        "r",
-        "n"
-      ],
-      "commands": [
-        "editor.action.rename"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "space"
-      ],
-      "commands": [
-        "editor.action.trimTrailingWhitespace"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "p"
-      ],
-      "commands": [
-        "workbench.action.showCommands"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "f"
-      ],
-      "commands": [
-        "workbench.action.quickOpen"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "s"
-      ],
-      "commands": [
-        "workbench.action.gotoSymbol"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "/"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "a"
-      ],
-      "commands": [
-        "workbench.files.action.focusFilesExplorer"
-      ]
-    },
-    {
-      "before": [
-        "leader",
-        "t"
-      ],
-      "commands": [
-        "workbench.action.terminal.toggleTerminal"
-      ]
-    },
-    {
-      "before": [
-        "c",
-        "c"
-      ],
-      "commands": [
-        "editor.action.addCommentLine"
-      ]
-    },
-    {
-      "before": [
-        "c",
-        "u"
-      ],
-      "commands": [
-        "editor.action.removeCommentLine"
-      ]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "c",
-        "c"
-      ],
-      "commands": [
-        "editor.action.addCommentLine"
-      ]
-    },
-    {
-      "before": [
-        "c",
-        "u"
-      ],
-      "commands": [
-        "editor.action.removeCommentLine"
-      ]
-    },
-    {
-      "before": [
-        ">"
-      ],
-      "commands": [
-        "editor.action.indentLines"
-      ]
-    },
-    {
-      "before": [
-        "<"
-      ],
-      "commands": [
-        "editor.action.outdentLines"
-      ]
-    }
-  ],
-  // ## Extension: errorLens
-  "errorLens.statusBarColorsEnabled": true,
-  "errorLens.margin": "6ch",
-  "errorLens.fontWeight": "100",
-  "errorLens.fontStyleItalic": true,
-  "errorLens.fontSize": "13",
-  "errorLens.followCursor": "closestProblem",
-  "errorLens.gutterIconsEnabled": true,
-  "errorLens.excludeBySource": [
-    "cSpell"
-  ],
-  // not show in real
-  "errorLens.onSave": true,
-  "vim.useSystemClipboard": true,
-  "vim.easymotion": true,
-  "vim.leader": ";",
-  "vim.incsearch": true,
-  "vim.hlsearch": true,
-  "window.zoomLevel": 0.5,
-  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-  "editor.guides.bracketPairs": true,
-  "workbench.colorTheme": "Dracula Soft",
-  "breadcrumbs.enabled": false,
-  "editor.renderWhitespace": "all",
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "vsicons.dontShowNewVersionMessage": true,
-  "redhat.telemetry.enabled": true,
-  "workbench.startupEditor": "none",
-  "[python]": {
-    "editor.formatOnType": true
-  },
-  "yaml.customTags": [
-    "!And",
-    "!And sequence",
-    "!If",
-    "!If sequence",
-    "!Not",
-    "!Not sequence",
-    "!Equals",
-    "!Equals sequence",
-    "!Or",
-    "!Or sequence",
-    "!FindInMap",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Join",
-    "!Join sequence",
-    "!Cidr",
-    "!Ref",
-    "!Sub",
-    "!Sub sequence",
-    "!GetAtt",
-    "!GetAZs",
-    "!ImportValue",
-    "!ImportValue sequence",
-    "!Select",
-    "!Select sequence",
-    "!Split",
-    "!Split sequence"
-  ],
-  "cSpell.userWords": [
-    "cpid",
-    "opentelemetry",
-    "trendmicro",
-    "Upstreams"
-  ],
-  "workbench.editorAssociations": {
-    "*.pb": "default"
-  },
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "leetcode.endpoint": "leetcode-cn",
-  "leetcode.workspaceFolder": "/Users/wen_xu/myScript/leetcode",
-  "leetcode.hint.configWebviewMarkdown": false,
-  "leetcode.hint.commentDescription": false,
-  "leetcode.defaultLanguage": "java",
-  "leetcode.hint.commandShortcut": false,
-  "cmake.showOptionsMovedNotification": false,
-  "go.formatTool": "gofmt",
-  "workbench.editor.showTabs": "single",
-  "workbench.editor.editorActionsLocation": "hidden",
-  "window.commandCenter": false,
-  "workbench.sideBar.location": "right",
-  "workbench.activityBar.location": "top",
-}
+    "plantuml.commandArgs": [
+
+      "-DPLANTUML_LIMIT_SIZE=16384"
+    ],
+    "plantuml.exportConcurrency": 5,
+    "plantuml.exportFormat": "svg"
+  }
