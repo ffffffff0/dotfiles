@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/Users/wen_xu/goTest'
 let g:netrw_dirhist_1='/Users/wen_xu/kongLearn'
 let g:netrw_dirhist_0='/Users/wen_xu/dotfiles'
 let g:netrw_dirhist_9='/home/vagrant/java8learn/apple'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_6='/home/vagrant/identidock/app'
 let g:netrw_dirhist_5='/home/vagrant/leetcode'
 let g:netrw_dirhist_4='/home/vagrant/leetcode/app/src/main/java/leetcode/app/lc2'
 let g:netrw_dirhist_3='/home/vagrant/leetcode/app/src/main/java/leetcode/app'
-let g:netrw_dirhist_2='/home/vagrant/leetcode/app/src/main/java/leetcode'

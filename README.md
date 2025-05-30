@@ -1,31 +1,27 @@
 ## dotfiles
 
-vim版本>=8.1 
+vim version>=8.1 
 
 - vimrc
 
-  vim 配置
-
-- tmux.conf
-
-  tmux 配置
+  vim config
 
 - ideavimrc
 
-  IDEA vim 插件配置
+  IDEA vim plugin config
 
 - settings.json && keybindings.json
 
-  vscode vim 插件配置
+  vscode vim plugin config
 
 
-### 使用方法
+### usage
 
 `make init`
 
-`:PlugInstall` 安装插件
+`:PlugInstall` install plugins
 
-- coc.vim 设置
+- coc.vim
 
 vim >= 8.1 && nodejs >= 14.14:
 
