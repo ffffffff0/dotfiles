@@ -1,0 +1,38 @@
+[
+  {
+    "context": "VimControl && !menu && vim_mode == normal",
+    "bindings": {
+      // H → ^ (行首)  L → $ (行尾)
+      "H": ["workspace::SendKeystrokes", "^"],
+      "L": ["workspace::SendKeystrokes", "$"],
+
+      // Leader (;) mappings
+      "; d": ["workspace::SendKeystrokes", "ctrl-d"],          // 向下翻页
+      "; u": ["workspace::SendKeystrokes", "ctrl-u"],          // 向上翻页
+      "; i": ["workspace::SendKeystrokes", "ctrl-i"],          // 跳转前进
+      "; o": ["workspace::SendKeystrokes", "ctrl-o"],          // 跳转后退
+      "; l": "pane::ActivateNextItem",                         // 下一个 tab
+      "; h": "pane::ActivatePreviousItem",                         // 上一个 tab
+      "; w": "workspace::Save",                                // 保存
+      "; q": "pane::CloseActiveItem",                          // 关闭 (保存用 ;w)
+      "; g i": "editor::GoToImplementation",                   // 跳转到实现
+      "; c c": "editor::ToggleComments",                       // 注释
+      "; c u": "editor::ToggleComments",                       // 取消注释
+      "; r n": "editor::Rename",                               // 重命名
+      // "; space" 已移除 — 用 settings 里的 remove_trailing_whitespace_on_save 代替
+      "; p": "command_palette::Toggle",                        // 命令面板
+      "; f": "file_finder::Toggle",                            // 打开文件
+      "; s": "outline::Toggle",                                // 跳转 symbol
+      "; /": "buffer_search::Dismiss",                         // 取消搜索高亮
+      "; a": "workspace::ToggleLeftDock",                      // 文件树
+      "; t": "workspace::ToggleBottomDock"                     // 终端
+    }
+  },
+  {
+    "context": "VimControl && !menu && vim_mode == visual",
+    "bindings": {
+      "c c": "editor::ToggleComments",
+      "c u": "editor::ToggleComments"
+    }
+  }
+]
