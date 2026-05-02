@@ -1,6 +1,9 @@
 // Converted from VSCode config
 {
   // Core
+  "edit_predictions": {
+    "provider": "zed"
+  },
   "icon_theme": "VSCode Icons for Zed (Dark Official Icons)",
   "agent_buffer_font_size": 16.5,
   "ui_font_weight": 500.0,
@@ -39,9 +42,15 @@
   "show_edit_predictions": true,
   "relative_line_numbers": "enabled",
 
+  // Toolbar
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+
   // Tabs
   "preview_tabs": { "enabled": false },
-  "tab_bar": { "show": false },
+  "tab_bar": { "show": true },
 
   // Search
   "use_smartcase_search": true,
