@@ -14,6 +14,10 @@ vim version>=8.1
 
   vscode vim plugin config
 
+- zed/
+
+  zed editor config (Dracula Soft theme, vim keybindings, settings)
+
 
 ### usage
 
