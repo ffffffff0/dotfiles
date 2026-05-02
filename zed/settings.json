@@ -41,7 +41,7 @@
 
   // Tabs
   "preview_tabs": { "enabled": false },
-  "tab_bar": { "show": true },
+  "tab_bar": { "show": false },
 
   // Search
   "use_smartcase_search": true,
