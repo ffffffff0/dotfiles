@@ -1,21 +1,22 @@
 // Converted from VSCode config
 {
   // Core
+  "ui_font_family": "FiraCode Nerd Font",
   "edit_predictions": {
     "provider": "zed"
   },
   "icon_theme": "VSCode Icons for Zed (Dark Official Icons)",
   "agent_buffer_font_size": 16.5,
-  "ui_font_weight": 500.0,
+  "ui_font_weight": 600.0,
   "vim_mode": true,
   "base_keymap": "VSCode",
 
   // Font
-  "buffer_font_family": "FiraCode Nerd Font Propo",
+  "buffer_font_family": "FiraCode Nerd Font",
   "buffer_font_size": 16.5,
   "buffer_font_ligatures": true,
   "buffer_font_weight": 500,
-  "ui_font_size": 18.0,
+  "ui_font_size": 16.0,
 
   // Appearance
   "theme": {
@@ -34,7 +35,7 @@
     }
   },
   "minimap": { "show": "never" },
-  "scrollbar": { "show": "never" },
+  "scrollbar": { "show": "auto" },
   "scroll_beyond_last_line": "off",
   "wrap_guides": [120],
   "colorize_brackets": true,
